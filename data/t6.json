@@ -1,0 +1,567 @@
+{
+  "id": 6,
+  "title": "和諧的夫妻關係—孩子的幸福堡壘",
+  "verse": "『照樣，作丈夫的，要按情理與妻子同住，因為她是比你軟弱的器皿，…是與你一同承受生命之恩的…』",
+  "verse_ref": "彼前三7",
+  "verse_highlight": [
+    "一同承受"
+  ],
+  "bold": [
+    "一個家庭要好，父親和母親必須是同心的。",
+    "家庭的情形，總是在第二代身上彰顯出來。",
+    "基督徒，就是一個裡面有基督的人。有基督在他裡面，作他的生命，作他的能力。"
+  ],
+  "palette": {
+    "bg": "#FDF3EA",
+    "ink": "#4E2418",
+    "accent": "#C8321E",
+    "panel": "rgba(255,250,245,0.84)"
+  },
+  "images": {
+    "front": "img/t6_front.jpg",
+    "back": "img/t6_back.jpg"
+  },
+  "size": {
+    "front": [
+      2000,
+      1410
+    ],
+    "back": [
+      2000,
+      1410
+    ]
+  },
+  "regions": {
+    "title_art": {
+      "img": "front",
+      "box": [
+        143,
+        82,
+        843,
+        468
+      ]
+    },
+    "main_illustration": {
+      "img": "front",
+      "box": [
+        5,
+        515,
+        845,
+        1410
+      ]
+    },
+    "red_castle_tower": {
+      "img": "front",
+      "box": [
+        167,
+        515,
+        576,
+        1410
+      ]
+    },
+    "yellow_castle_tower": {
+      "img": "front",
+      "box": [
+        5,
+        923,
+        221,
+        1410
+      ]
+    },
+    "middle_castle_tower": {
+      "img": "front",
+      "box": [
+        540,
+        722,
+        726,
+        1410
+      ]
+    },
+    "dark_red_castle_tower": {
+      "img": "front",
+      "box": [
+        673,
+        819,
+        845,
+        1410
+      ]
+    },
+    "white_castles_right": {
+      "img": "front",
+      "box": [
+        890,
+        0,
+        2000,
+        1410
+      ]
+    },
+    "bird_center_large": {
+      "img": "front",
+      "box": [
+        818,
+        312,
+        1092,
+        525
+      ]
+    },
+    "bird_center_small": {
+      "img": "front",
+      "box": [
+        705,
+        504,
+        900,
+        609
+      ]
+    },
+    "bird_left_faint": {
+      "img": "front",
+      "box": [
+        98,
+        600,
+        238,
+        776
+      ]
+    },
+    "bird_bottom_right": {
+      "img": "front",
+      "box": [
+        1800,
+        1061,
+        1938,
+        1239
+      ]
+    },
+    "clouds_top_center": {
+      "img": "front",
+      "box": [
+        605,
+        33,
+        1156,
+        371
+      ]
+    },
+    "cloud_left_upper": {
+      "img": "front",
+      "box": [
+        27,
+        386,
+        303,
+        551
+      ]
+    },
+    "cloud_center_peach": {
+      "img": "front",
+      "box": [
+        622,
+        664,
+        817,
+        784
+      ]
+    },
+    "verse_block": {
+      "img": "front",
+      "box": [
+        1035,
+        1177,
+        1897,
+        1367
+      ]
+    },
+    "verse_highlight": {
+      "img": "front",
+      "box": [
+        1232,
+        1308,
+        1451,
+        1367
+      ]
+    },
+    "vertical_title": {
+      "img": "back",
+      "box": [
+        1753,
+        111,
+        1907,
+        805
+      ]
+    },
+    "drop_cap": {
+      "img": "back",
+      "box": [
+        1619,
+        111,
+        1715,
+        221
+      ]
+    },
+    "article_text": {
+      "img": "back",
+      "box": [
+        141,
+        111,
+        1715,
+        1298
+      ]
+    },
+    "bird_right": {
+      "img": "back",
+      "box": [
+        1912,
+        395,
+        2000,
+        518
+      ]
+    },
+    "bird_left": {
+      "img": "back",
+      "box": [
+        29,
+        1113,
+        179,
+        1298
+      ]
+    },
+    "castle_bottom_right": {
+      "img": "back",
+      "box": [
+        1732,
+        876,
+        2000,
+        1410
+      ]
+    }
+  },
+  "scenes": [
+    {
+      "type": "cover",
+      "img": "front",
+      "cam_from": [
+        62,
+        6,
+        790,
+        1404
+      ],
+      "cam_to": [
+        111,
+        49,
+        738,
+        1312
+      ],
+      "start": 0.0,
+      "duration": 3.0,
+      "audio": null,
+      "audio_offset": 0.0,
+      "audio_dur": 0.0
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        90,
+        472,
+        406,
+        722
+      ],
+      "cam_to": [
+        197,
+        472,
+        443,
+        787
+      ],
+      "text": "有的婚姻，夫妻之情能細水長流；有些夫妻，卻只是為了孩子，同在一個屋簷下；更有甚者，乾脆盡了緣分，沒了情分，佳偶卻成怨偶…殊不知孩子要能安定成長，就必須擁有幸福堡壘…",
+      "text_pos": "bottom-right",
+      "sprites": [
+        {
+          "region": "cloud_center_peach",
+          "x": 0.22,
+          "y": 0.15,
+          "w": 0.24,
+          "motion": "drift"
+        },
+        {
+          "region": "bird_right",
+          "x": 0.82,
+          "y": 0.18,
+          "w": 0.16,
+          "motion": "float"
+        }
+      ],
+      "start": 3.0,
+      "duration": 21.54,
+      "audio": "audio/t6/s01.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 20.04
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        262,
+        491,
+        517,
+        918
+      ],
+      "cam_to": [
+        353,
+        622,
+        443,
+        787
+      ],
+      "text": "根據研究，父母因離異而無法一起陪伴孩子成長，對孩子產生許多負面影響。在心理上，孩子可能產生焦慮、無助等負面情緒；而在行為上，則可能導致退縮、自我封閉、學習落後…等。可見在孩子的成長中，父母親的角色都很重要。",
+      "text_pos": "top-right",
+      "sprites": [
+        {
+          "region": "bird_left_faint",
+          "x": 0.18,
+          "y": 0.56,
+          "w": 0.18,
+          "motion": "float"
+        }
+      ],
+      "start": 24.54,
+      "duration": 27.972,
+      "audio": "audio/t6/s02.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 26.472
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        385,
+        472,
+        406,
+        722
+      ],
+      "cam_to": [
+        336,
+        472,
+        480,
+        853
+      ],
+      "text": "父母親若經常不和，用吵架或暴力來解決衝突，孩子耳濡目染下，自己也會變得暴躁、衝動。然而，每個孩子內心深處，都渴望擁有幸福的堡壘；你我為人父母，能否為著孩子改變自己？",
+      "text_pos": "bottom-left",
+      "sprites": [
+        {
+          "region": "bird_center_large",
+          "x": 0.36,
+          "y": 0.18,
+          "w": 0.24,
+          "motion": "sway"
+        }
+      ],
+      "start": 52.512,
+      "duration": 22.02,
+      "audio": "audio/t6/s03.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 20.52
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        172,
+        557,
+        480,
+        853
+      ],
+      "cam_to": [
+        41,
+        557,
+        480,
+        853
+      ],
+      "text": "一個家庭要好，父親和母親必須是同心的。父母是同心合意的，為著神的緣故，犧牲自己的自由，建立一個嚴格的道德標準。",
+      "text_pos": "top",
+      "sprites": [
+        {
+          "region": "bird_center_small",
+          "x": 0.82,
+          "y": 0.42,
+          "w": 0.2,
+          "motion": "rise"
+        }
+      ],
+      "start": 74.532,
+      "duration": 15.42,
+      "audio": "audio/t6/s04.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 13.92
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        279,
+        472,
+        443,
+        787
+      ],
+      "cam_to": [
+        312,
+        472,
+        406,
+        722
+      ],
+      "text": "一個男孩子，或者一個女孩子，在家庭裡受了十幾年或二十幾年的薰陶，他家庭裡的作風，他家庭裡的辦法，遲遲早早這一些作風都要顯出來。如果在一個家庭裡有約束，沒有打罵吵鬧，從這樣的家庭裡出來的人，你看見他自然也很有禮貌，不隨便說話，不隨便打罵，也很少吵鬧。",
+      "text_pos": "bottom",
+      "sprites": [
+        {
+          "region": "cloud_center_peach",
+          "x": 0.2,
+          "y": 0.15,
+          "w": 0.22,
+          "motion": "drift"
+        },
+        {
+          "region": "bird_bottom_right",
+          "x": 0.82,
+          "y": 0.18,
+          "w": 0.16,
+          "motion": "float"
+        }
+      ],
+      "start": 89.952,
+      "duration": 30.948,
+      "audio": "audio/t6/s05.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 29.448
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        279,
+        622,
+        443,
+        787
+      ],
+      "cam_to": [
+        402,
+        622,
+        443,
+        787
+      ],
+      "text": "從這樣的家庭裡出來的孩子，至少知道吵是大事，吵是錯的事。家庭的情形，總是在第二代身上彰顯出來。",
+      "text_pos": "top-left",
+      "sprites": [
+        {
+          "region": "bird_right",
+          "x": 0.84,
+          "y": 0.16,
+          "w": 0.16,
+          "motion": "float"
+        },
+        {
+          "region": "cloud_center_peach",
+          "x": 0.2,
+          "y": 0.42,
+          "w": 0.22,
+          "motion": "drift"
+        }
+      ],
+      "start": 120.9,
+      "duration": 14.052,
+      "audio": "audio/t6/s06.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 12.552
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        98,
+        472,
+        480,
+        853
+      ],
+      "cam_to": [
+        180,
+        472,
+        406,
+        722
+      ],
+      "text": "基督徒，就是一個裡面有基督的人。有基督在他裡面，作他的生命，作他的能力。所有新婚夫妻都喜歡吵嘴。妻子得救之後，還有爭吵的性情，但現今她也有另一個生命。",
+      "text_pos": "bottom-right",
+      "sprites": [
+        {
+          "region": "cloud_center_peach",
+          "x": 0.22,
+          "y": 0.14,
+          "w": 0.22,
+          "motion": "drift"
+        },
+        {
+          "region": "bird_center_small",
+          "x": 0.8,
+          "y": 0.18,
+          "w": 0.2,
+          "motion": "sway"
+        }
+      ],
+      "start": 134.952,
+      "duration": 22.092,
+      "audio": "audio/t6/s07.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 20.592
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        143,
+        66,
+        701,
+        1246
+      ],
+      "cam_to": [
+        111,
+        25,
+        738,
+        1312
+      ],
+      "text": "當她想要與丈夫爭吵時，只能講幾句，就講不下去了。她還沒有道歉，她的丈夫就先求赦免了。這就構成正確的婚姻生活。但願天下父母，都能珍惜與經營彼此的關係，才能帶給孩子安全感，並為孩子創造幸福！",
+      "text_pos": "bottom-left",
+      "sprites": [
+        {
+          "region": "bird_bottom_right",
+          "x": 0.84,
+          "y": 0.42,
+          "w": 0.16,
+          "motion": "sway"
+        }
+      ],
+      "start": 157.044,
+      "duration": 26.316,
+      "audio": "audio/t6/s08.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 24.816
+    },
+    {
+      "type": "verse",
+      "img": "front",
+      "cam_from": [
+        66,
+        491,
+        517,
+        918
+      ],
+      "cam_to": [
+        123,
+        557,
+        480,
+        853
+      ],
+      "text": "『照樣，作丈夫的，要按情理與妻子同住，因為她是比你軟弱的器皿，…是與你一同承受生命之恩的…』",
+      "ref": "彼前三7",
+      "text_pos": "top-right",
+      "start": 183.36,
+      "duration": 14.508,
+      "audio": "audio/t6/s09.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 13.008
+    }
+  ],
+  "total": 198.868,
+  "bgm": "audio/bgm.mp3"
+}

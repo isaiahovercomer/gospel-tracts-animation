@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>兒童家長福音單張動畫版</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="play-body">
+  <div id="stage-viewport">
+    <div id="stage">
+      <div id="scenes-layer"></div>
+      <div id="white-overlay"></div>
+
+      <div id="ui-layer">
+        <a href="index.html" id="top-home-link" class="top-home-link">← 回首頁</a>
+
+        <div id="start-overlay" class="ui-overlay">
+          <button type="button" id="play-btn" class="play-circle-btn" aria-label="播放">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span id="play-btn-label" class="play-label">播放</span>
+          </button>
+        </div>
+
+        <div id="end-overlay" class="ui-overlay hidden">
+          <div class="end-card">
+            <div id="end-title" class="end-title">健康甜美的親子關係</div>
+            <div class="end-actions">
+              <button type="button" id="replay-btn" class="action-btn primary">↻ 再看一次</button>
+              <a href="index.html" class="action-btn secondary">⌂ 回首頁</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/player.js"></script>
+</body>
+</html>

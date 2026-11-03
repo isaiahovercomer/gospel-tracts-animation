@@ -1,0 +1,458 @@
+{
+  "id": 3,
+  "title": "孩子！這是彎曲悖謬的世代！",
+  "verse": "『使你們無可指摘、純潔無雜，在彎曲悖謬的世代中，作神無瑕疵的兒女；你們在其中好像發光之體顯在世界裏。』",
+  "verse_ref": "腓二15",
+  "verse_highlight": [
+    "發光之體"
+  ],
+  "bold": [
+    "今天的方舟是甚麼？正確的召會生活就是神今天所需要的方舟。",
+    "甚麼能救我們脫離這悖謬的世代？過召會生活能救我們。"
+  ],
+  "palette": {
+    "bg": "#e6f1eb",
+    "ink": "#183624",
+    "accent": "#128840",
+    "panel": "rgba(244,250,246,0.84)"
+  },
+  "images": {
+    "front": "img/t3_front.jpg",
+    "back": "img/t3_back.jpg"
+  },
+  "size": {
+    "front": [
+      2000,
+      1410
+    ],
+    "back": [
+      2000,
+      1410
+    ]
+  },
+  "regions": {
+    "title": {
+      "img": "front",
+      "box": [
+        112,
+        310,
+        979,
+        668
+      ]
+    },
+    "main_illustration": {
+      "img": "front",
+      "box": [
+        25,
+        39,
+        1245,
+        1375
+      ]
+    },
+    "girl_and_cat": {
+      "img": "front",
+      "box": [
+        434,
+        910,
+        700,
+        1326
+      ]
+    },
+    "oval_frame": {
+      "img": "front",
+      "box": [
+        1212,
+        2,
+        1987,
+        1124
+      ]
+    },
+    "verse_block": {
+      "img": "front",
+      "box": [
+        1223,
+        1144,
+        1954,
+        1377
+      ]
+    },
+    "leaves_top": {
+      "img": "front",
+      "box": [
+        1031,
+        31,
+        1370,
+        450
+      ]
+    },
+    "leaves_bottom": {
+      "img": "front",
+      "box": [
+        1081,
+        1212,
+        1307,
+        1409
+      ]
+    },
+    "leaves_right": {
+      "img": "front",
+      "box": [
+        1896,
+        1086,
+        1999,
+        1180
+      ]
+    },
+    "vertical_title": {
+      "img": "back",
+      "box": [
+        1731,
+        107,
+        1897,
+        909
+      ]
+    },
+    "drop_cap": {
+      "img": "back",
+      "box": [
+        1540,
+        127,
+        1639,
+        227
+      ]
+    },
+    "article_text": {
+      "img": "back",
+      "box": [
+        106,
+        115,
+        1639,
+        1294
+      ]
+    },
+    "girl_illustration": {
+      "img": "back",
+      "box": [
+        1642,
+        955,
+        1999,
+        1409
+      ]
+    }
+  },
+  "scenes": [
+    {
+      "type": "cover",
+      "img": "front",
+      "cam_from": [
+        105,
+        10,
+        784,
+        1394
+      ],
+      "cam_to": [
+        258,
+        161,
+        690,
+        1226
+      ],
+      "start": 0.0,
+      "duration": 3.0,
+      "audio": null,
+      "audio_offset": 0.0,
+      "audio_dur": 0.0
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        306,
+        419,
+        544,
+        968
+      ],
+      "cam_to": [
+        194,
+        177,
+        690,
+        1226
+      ],
+      "text": "不知您是否注意過？身處在這個資訊爆炸的時代，無可避免地，孩子無時無刻不在接收各樣的訊息。甚至一滑開手機，Youtube、社群軟體，都充斥著許多似是而非的影片，誤導孩子學習、模仿，不知不覺地扭曲了孩子的價值觀…",
+      "text_pos": "top-right",
+      "sprites": [
+        {
+          "region": "leaves_right",
+          "x": 0.16,
+          "y": 0.62,
+          "w": 0.16,
+          "motion": "sway"
+        },
+        {
+          "region": "leaves_right",
+          "x": 0.86,
+          "y": 0.72,
+          "w": 0.15,
+          "motion": "float"
+        }
+      ],
+      "start": 3.0,
+      "duration": 26.796,
+      "audio": "audio/t3/s01.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 25.296
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        97,
+        39,
+        472,
+        839
+      ],
+      "cam_to": [
+        435,
+        55,
+        472,
+        839
+      ],
+      "text": "更令父母憂心的是，在這混亂不安的社會裡，毒品、霸凌、暴力、淫亂等事件層出不窮。這個世代只會越來越亂；即使我們為著下一代走上街頭，仍無法抵擋這世代趨於沉淪的潮流。",
+      "text_pos": "bottom-left",
+      "sprites": [
+        {
+          "region": "girl_illustration",
+          "x": 0.82,
+          "y": 0.78,
+          "w": 0.28,
+          "motion": "float"
+        },
+        {
+          "region": "leaves_top",
+          "x": 0.82,
+          "y": 0.2,
+          "w": 0.25,
+          "motion": "sway"
+        }
+      ],
+      "start": 29.796,
+      "duration": 21.3,
+      "audio": "audio/t3/s02.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 19.8
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        790,
+        16,
+        581,
+        1032
+      ],
+      "cam_to": [
+        903,
+        23,
+        435,
+        774
+      ],
+      "text": "聖經中為人熟知的人物－挪亞，就處於一個人類失去良知、放縱情慾的世代中。馬太福音二十四章：『挪亞的日子怎樣，人子來臨也要怎樣。…人…並不知道審判要來，直到洪水來了，把他們全都沖去…』",
+      "text_pos": "center",
+      "sprites": [
+        {
+          "region": "leaves_bottom",
+          "x": 0.2,
+          "y": 0.86,
+          "w": 0.24,
+          "motion": "rise"
+        },
+        {
+          "region": "leaves_right",
+          "x": 0.85,
+          "y": 0.84,
+          "w": 0.16,
+          "motion": "drift"
+        }
+      ],
+      "start": 51.096,
+      "duration": 24.132,
+      "audio": "audio/t3/s03.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 22.632
+    },
+    {
+      "type": "text",
+      "img": "back",
+      "cam_from": [
+        1589,
+        452,
+        406,
+        723
+      ],
+      "cam_to": [
+        1632,
+        758,
+        363,
+        645
+      ],
+      "text": "今天我們生活在同樣的世代中。沒有一個年輕人或成年人，能抵擋現代社會的洪流。基督徒父母甚至在孩子未出生以前，就為他們禱告；他們把孩子獻給主，戰兢恐懼的幫助他們認識神，遠離這黑暗世界的影響。",
+      "text_pos": "top-left",
+      "sprites": [
+        {
+          "region": "leaves_top",
+          "x": 0.82,
+          "y": 0.18,
+          "w": 0.26,
+          "motion": "sway"
+        },
+        {
+          "region": "leaves_bottom",
+          "x": 0.18,
+          "y": 0.84,
+          "w": 0.22,
+          "motion": "float"
+        }
+      ],
+      "start": 75.228,
+      "duration": 24.636,
+      "audio": "audio/t3/s04.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 23.136
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        387,
+        210,
+        523,
+        929
+      ],
+      "cam_to": [
+        395,
+        10,
+        784,
+        1394
+      ],
+      "text": "但孩子們到了六歲就要上學，他們一進學校，就在這世代邪惡的權勢之下。幾乎每個孩子都多少受到影響，沒有一個能夠倖免。神需要世代的改變。神需要一隻方舟。",
+      "text_pos": "bottom-right",
+      "sprites": [
+        {
+          "region": "leaves_top",
+          "x": 0.82,
+          "y": 0.18,
+          "w": 0.28,
+          "motion": "sway"
+        }
+      ],
+      "start": 99.864,
+      "duration": 20.82,
+      "audio": "audio/t3/s05.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 19.32
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        282,
+        355,
+        581,
+        1032
+      ],
+      "cam_to": [
+        363,
+        690,
+        392,
+        697
+      ],
+      "text": "今天的方舟是甚麼？正確的召會生活就是神今天所需要的方舟。我們一來到召會裏，就不需別人告訴我們從世界出來；我們過召會生活，常常來聚會；至終，許多屬這世代的事物都不見了。藉著過召會生活，一切屬這彎曲世代的事物都不見了。",
+      "text_pos": "top",
+      "sprites": [
+        {
+          "region": "leaves_right",
+          "x": 0.86,
+          "y": 0.62,
+          "w": 0.16,
+          "motion": "float"
+        },
+        {
+          "region": "leaves_bottom",
+          "x": 0.16,
+          "y": 0.88,
+          "w": 0.22,
+          "motion": "rise"
+        }
+      ],
+      "start": 120.684,
+      "duration": 28.188,
+      "audio": "audio/t3/s06.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 26.688
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        855,
+        13,
+        435,
+        774
+      ],
+      "cam_to": [
+        1097,
+        16,
+        581,
+        1032
+      ],
+      "text": "甚麼能救我們脫離這悖謬的世代？過召會生活能救我們。我們在建造方舟，這方舟能救我們，也能救別人脫離神所定罪的世代。",
+      "text_pos": "bottom",
+      "sprites": [
+        {
+          "region": "girl_and_cat",
+          "x": 0.78,
+          "y": 0.34,
+          "w": 0.26,
+          "motion": "zoom"
+        },
+        {
+          "region": "leaves_right",
+          "x": 0.2,
+          "y": 0.24,
+          "w": 0.16,
+          "motion": "sway"
+        }
+      ],
+      "start": 148.872,
+      "duration": 15.996,
+      "audio": "audio/t3/s07.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 14.496
+    },
+    {
+      "type": "verse",
+      "img": "front",
+      "cam_from": [
+        210,
+        161,
+        697,
+        1239
+      ],
+      "cam_to": [
+        347,
+        613,
+        435,
+        774
+      ],
+      "text": "『使你們無可指摘、純潔無雜，在彎曲悖謬的世代中，作神無瑕疵的兒女；你們在其中好像發光之體顯在世界裏。』",
+      "ref": "腓二15",
+      "text_pos": "top",
+      "start": 164.868,
+      "duration": 16.668,
+      "audio": "audio/t3/s08.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 15.168
+    }
+  ],
+  "total": 182.536,
+  "bgm": "audio/bgm.mp3"
+}

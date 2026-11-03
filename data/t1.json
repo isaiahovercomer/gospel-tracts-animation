@@ -1,0 +1,549 @@
+{
+  "id": 1,
+  "title": "健康甜美的親子關係",
+  "verse": "『作兒女的，要凡事順從父母，因為這在主裏是可喜悅的。作父親的，不要惹你們兒女的氣，免得他們灰心喪志。』",
+  "verse_ref": "西三20",
+  "verse_highlight": [
+    "可喜悅的"
+  ],
+  "bold": [
+    "你們必須學習和你的兒女接近，歡喜幫助他，讓他們有難處的時候會告訴你，軟弱的時候會請求你。",
+    "你的兒女和你多親近，和你多接近，就看你頭二十年怎樣對待他。"
+  ],
+  "palette": {
+    "bg": "#F8EAE1",
+    "ink": "#4A261B",
+    "accent": "#AD2A1A",
+    "panel": "rgba(255,250,245,0.82)"
+  },
+  "images": {
+    "front": "img/t1_front.jpg",
+    "back": "img/t1_back.jpg"
+  },
+  "size": {
+    "front": [
+      2000,
+      1410
+    ],
+    "back": [
+      2000,
+      1410
+    ]
+  },
+  "regions": {
+    "title_art": {
+      "img": "front",
+      "box": [
+        110,
+        136,
+        843,
+        491
+      ]
+    },
+    "main_illustration": {
+      "img": "front",
+      "box": [
+        77,
+        533,
+        1086,
+        1352
+      ]
+    },
+    "mother_and_child": {
+      "img": "front",
+      "box": [
+        352,
+        641,
+        769,
+        1279
+      ]
+    },
+    "left_plants": {
+      "img": "front",
+      "box": [
+        133,
+        734,
+        354,
+        1302
+      ]
+    },
+    "right_plants": {
+      "img": "front",
+      "box": [
+        770,
+        694,
+        1035,
+        1258
+      ]
+    },
+    "verse_block": {
+      "img": "front",
+      "box": [
+        1146,
+        1121,
+        1896,
+        1354
+      ]
+    },
+    "verse_highlight_spot": {
+      "img": "front",
+      "box": [
+        1614,
+        1180,
+        1740,
+        1241
+      ]
+    },
+    "left_yellow_branches": {
+      "img": "front",
+      "box": [
+        0,
+        370,
+        263,
+        1064
+      ]
+    },
+    "center_pink_branches": {
+      "img": "front",
+      "box": [
+        759,
+        359,
+        1127,
+        527
+      ]
+    },
+    "right_yellow_branches": {
+      "img": "front",
+      "box": [
+        1819,
+        799,
+        1999,
+        1129
+      ]
+    },
+    "right_white_cloud": {
+      "img": "front",
+      "box": [
+        1169,
+        0,
+        1999,
+        1032
+      ]
+    },
+    "vertical_title": {
+      "img": "back",
+      "box": [
+        1806,
+        111,
+        1881,
+        903
+      ]
+    },
+    "drop_cap": {
+      "img": "back",
+      "box": [
+        1584,
+        115,
+        1690,
+        213
+      ]
+    },
+    "article_text": {
+      "img": "back",
+      "box": [
+        143,
+        115,
+        1717,
+        1317
+      ]
+    },
+    "mother_child_illustration": {
+      "img": "back",
+      "box": [
+        1706,
+        896,
+        1998,
+        1400
+      ]
+    },
+    "top_left_decor": {
+      "img": "back",
+      "box": [
+        0,
+        19,
+        128,
+        480
+      ]
+    }
+  },
+  "scenes": [
+    {
+      "type": "cover",
+      "img": "front",
+      "cam_from": [
+        157,
+        177,
+        653,
+        1161
+      ],
+      "cam_to": [
+        93,
+        55,
+        762,
+        1355
+      ],
+      "start": 0.0,
+      "duration": 3.0,
+      "audio": null,
+      "audio_offset": 0.0,
+      "audio_dur": 0.0
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        266,
+        532,
+        479,
+        852
+      ],
+      "cam_to": [
+        331,
+        589,
+        406,
+        723
+      ],
+      "text": "好萊塢電影中，經常傳遞美國人的一個核心價值—看重家庭時光、保持良好的親子關係。從迪士尼的兒童電影、戰爭片，到風靡全球的動漫系列電影，無不以親子關係為主軸，並以感人的親情作為謝幕前的美好Ending…",
+      "text_pos": "bottom-right",
+      "sprites": [
+        {
+          "region": "center_pink_branches",
+          "x": 0.16,
+          "y": 0.14,
+          "w": 0.24,
+          "motion": "sway"
+        },
+        {
+          "region": "right_yellow_branches",
+          "x": 0.86,
+          "y": 0.18,
+          "w": 0.2,
+          "motion": "float"
+        }
+      ],
+      "start": 3.0,
+      "duration": 24.228,
+      "audio": "audio/t1/s01.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 22.728
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        226,
+        573,
+        435,
+        774
+      ],
+      "cam_to": [
+        371,
+        573,
+        435,
+        774
+      ],
+      "text": "然而這也呈現出，維持健康的親子關係是一件多麼不容易的事。從我們的成長經歷中也可以得知，產生代溝，可能也是我們未來必須面對的現實。這不禁令我們擔憂，今天抱在我們手中的孩子，會不會有一天就離我們遠去…",
+      "text_pos": "bottom-left",
+      "sprites": [
+        {
+          "region": "left_yellow_branches",
+          "x": 0.14,
+          "y": 0.18,
+          "w": 0.2,
+          "motion": "drift"
+        },
+        {
+          "region": "center_pink_branches",
+          "x": 0.86,
+          "y": 0.14,
+          "w": 0.22,
+          "motion": "sway"
+        }
+      ],
+      "start": 27.228,
+      "duration": 25.356,
+      "audio": "audio/t1/s02.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 23.856
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        363,
+        597,
+        392,
+        697
+      ],
+      "cam_to": [
+        298,
+        548,
+        465,
+        826
+      ],
+      "text": "但聖經中啟示，我們的神特別看重家庭、看重親子關係，以及世代的傳承：『我必與你並你世世代代的後裔堅立我的約…要作你和你後裔的神。』神與人的關係，神給人的救恩，不只是個人的，更是我們與孩子能一同享受的。",
+      "text_pos": "bottom",
+      "sprites": [
+        {
+          "region": "center_pink_branches",
+          "x": 0.15,
+          "y": 0.14,
+          "w": 0.22,
+          "motion": "sway"
+        },
+        {
+          "region": "right_yellow_branches",
+          "x": 0.86,
+          "y": 0.16,
+          "w": 0.2,
+          "motion": "float"
+        }
+      ],
+      "start": 52.584,
+      "duration": 24.756,
+      "audio": "audio/t1/s03.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 23.256
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        266,
+        113,
+        697,
+        1239
+      ],
+      "cam_to": [
+        331,
+        161,
+        639,
+        1135
+      ],
+      "text": "所以我們作父母的人，必須學習作兒女的朋友。你們千萬不要讓兒女和你好像很生疏，不會接近你。請你記得，朋友是交出來的，不是生出來的。",
+      "text_pos": "top-left",
+      "sprites": [
+        {
+          "region": "top_left_decor",
+          "x": 0.88,
+          "y": 0.42,
+          "w": 0.16,
+          "motion": "sway"
+        },
+        {
+          "region": "mother_child_illustration",
+          "x": 0.82,
+          "y": 0.82,
+          "w": 0.22,
+          "motion": "float"
+        }
+      ],
+      "start": 77.34,
+      "duration": 18.156,
+      "audio": "audio/t1/s04.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 16.656
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        395,
+        556,
+        450,
+        800
+      ],
+      "cam_to": [
+        331,
+        589,
+        414,
+        735
+      ],
+      "text": "你們必須學習和你的兒女接近，歡喜幫助他，讓他們有難處的時候會告訴你，軟弱的時候會請求你。不是說，他們軟弱的時候，就去請求別人。軟弱的時候能尋你，成功的時候能告訴你。",
+      "text_pos": "bottom-right",
+      "sprites": [
+        {
+          "region": "center_pink_branches",
+          "x": 0.84,
+          "y": 0.14,
+          "w": 0.24,
+          "motion": "drift"
+        },
+        {
+          "region": "left_yellow_branches",
+          "x": 0.14,
+          "y": 0.2,
+          "w": 0.2,
+          "motion": "sway"
+        }
+      ],
+      "start": 95.496,
+      "duration": 22.884,
+      "audio": "audio/t1/s05.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 21.384
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        323,
+        161,
+        639,
+        1135
+      ],
+      "cam_to": [
+        250,
+        113,
+        697,
+        1239
+      ],
+      "text": "總是有事情的時候要幫助他們。我能夠坐下來和他一同商量，他能夠尋我好像尋朋友似的。在家庭裏，父母要作到一個地步，能夠作兒女的朋友，這一個父母就沒有錯，就能作得好。",
+      "text_pos": "top",
+      "sprites": [
+        {
+          "region": "left_yellow_branches",
+          "x": 0.14,
+          "y": 0.68,
+          "w": 0.22,
+          "motion": "sway"
+        },
+        {
+          "region": "right_yellow_branches",
+          "x": 0.86,
+          "y": 0.7,
+          "w": 0.22,
+          "motion": "float"
+        }
+      ],
+      "start": 118.38,
+      "duration": 21.684,
+      "audio": "audio/t1/s06.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 20.184
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        298,
+        540,
+        479,
+        852
+      ],
+      "cam_to": [
+        367,
+        597,
+        392,
+        697
+      ],
+      "text": "所以，從兒女小的時候起你們就得學。我頂直對你們說，你的兒女和你多親近，和你多接近，就看你頭二十年怎樣對待他。頭二十年他若不親近你，到了三十歲、四十歲，他不可能會親近你。",
+      "text_pos": "bottom",
+      "sprites": [
+        {
+          "region": "center_pink_branches",
+          "x": 0.84,
+          "y": 0.14,
+          "w": 0.24,
+          "motion": "sway"
+        },
+        {
+          "region": "left_yellow_branches",
+          "x": 0.14,
+          "y": 0.18,
+          "w": 0.2,
+          "motion": "float"
+        }
+      ],
+      "start": 140.064,
+      "duration": 23.484,
+      "audio": "audio/t1/s07.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 21.984
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        339,
+        158,
+        639,
+        1135
+      ],
+      "cam_to": [
+        250,
+        113,
+        697,
+        1239
+      ],
+      "text": "他離開你要越過越遠。你們必須要作到，孩子有難處的時候，第一個是來告訴你，第一個是來尋你，你能夠作到一個可信的地步。這樣，這一個家庭的難處就相當少，能過去。",
+      "text_pos": "top-right",
+      "sprites": [
+        {
+          "region": "left_yellow_branches",
+          "x": 0.14,
+          "y": 0.66,
+          "w": 0.22,
+          "motion": "drift"
+        },
+        {
+          "region": "right_plants",
+          "x": 0.85,
+          "y": 0.82,
+          "w": 0.22,
+          "motion": "sway"
+        }
+      ],
+      "start": 163.548,
+      "duration": 20.532,
+      "audio": "audio/t1/s08.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 19.032
+    },
+    {
+      "type": "verse",
+      "img": "front",
+      "cam_from": [
+        306,
+        532,
+        479,
+        852
+      ],
+      "cam_to": [
+        355,
+        581,
+        414,
+        735
+      ],
+      "text": "『作兒女的，要凡事順從父母，因為這在主裏是可喜悅的。作父親的，不要惹你們兒女的氣，免得他們灰心喪志。』",
+      "ref": "西三20",
+      "text_pos": "bottom-left",
+      "sprites": [
+        {
+          "region": "center_pink_branches",
+          "x": 0.84,
+          "y": 0.15,
+          "w": 0.24,
+          "motion": "sway"
+        }
+      ],
+      "start": 184.08,
+      "duration": 17.34,
+      "audio": "audio/t1/s09.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 15.84
+    }
+  ],
+  "total": 202.42,
+  "bgm": "audio/bgm.mp3"
+}

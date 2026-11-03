@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>兒童家長福音單張動畫版</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home-body">
+  <div class="watercolor-blobs" aria-hidden="true">
+    <div class="blob blob-pink"></div>
+    <div class="blob blob-green"></div>
+    <div class="blob blob-cream"></div>
+  </div>
+
+  <main class="home-container">
+    <header class="home-header">
+      <span class="home-badge">親子與家庭・生命有聲繪本</span>
+      <h1 class="home-title">兒童家長福音單張動畫版</h1>
+      <p class="home-subtitle">點選單張卡片，聆聽溫暖旁白與經文祝福</p>
+    </header>
+
+    <section id="tract-grid" class="tract-grid" aria-label="福音單張列表"></section>
+
+    <footer class="home-footer">
+      <p>願神賜福您的家庭與兒女</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var FALLBACK_TRACTS = [
+        { id: 1, title: '健康甜美的親子關係', verse_ref: '西三20' },
+        { id: 2, title: '美好的家庭時光', verse_ref: '徒二46' },
+        { id: 3, title: '孩子！這是彎曲悖謬的世代！', verse_ref: '腓二15' },
+        { id: 4, title: '優良品格—留給孩子最好的禮物', verse_ref: '提後二21' },
+        { id: 5, title: '孩子一生的守護者', verse_ref: '約十29' },
+        { id: 6, title: '和諧的夫妻關係—孩子的幸福堡壘', verse_ref: '彼前三7' }
+      ];
+
+      var SVG_PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0%" stop-color="#f7ded6"/>' +
+        '<stop offset="55%" stop-color="#faf1e6"/>' +
+        '<stop offset="100%" stop-color="#dcebd9"/>' +
+        '</linearGradient></defs>' +
+        '<rect width="640" height="440" fill="url(#g)"/>' +
+        '<circle cx="140" cy="110" r="90" fill="#f3c5b8" opacity="0.45"/>' +
+        '<circle cx="510" cy="340" r="120" fill="#c7dec3" opacity="0.45"/>' +
+        '</svg>'
+      );
+
+      var grid = document.getElementById('tract-grid');
+
+      function createCard(item) {
+        var n = item.id;
+        var a = document.createElement('a');
+        a.className = 'tract-card';
+        a.href = 'play.html?t=' + n;
+        a.id = 'tract-card-' + n;
+
+        var thumbWrap = document.createElement('div');
+        thumbWrap.className = 'card-thumb-wrap';
+
+        var img = document.createElement('img');
+        img.className = 'card-thumb';
+        img.alt = item.title;
+        img.loading = 'lazy';
+        img.src = 'img/thumb_t' + n + '.jpg';
+        img.onerror = function () {
+          if (img.dataset.triedFront !== '1') {
+            img.dataset.triedFront = '1';
+            img.src = 'img/t' + n + '_front.jpg';
+          } else {
+            img.onerror = null;
+            img.src = SVG_PLACEHOLDER;
+          }
+        };
+
+        var numBadge = document.createElement('span');
+        numBadge.className = 'card-number';
+        numBadge.textContent = String(n);
+
+        var playPill = document.createElement('span');
+        playPill.className = 'card-play-pill';
+        playPill.textContent = '▶ 觀看動畫';
+
+        thumbWrap.appendChild(img);
+        thumbWrap.appendChild(numBadge);
+        thumbWrap.appendChild(playPill);
+
+        var body = document.createElement('div');
+        body.className = 'card-body';
+
+        var titleEl = document.createElement('h2');
+        titleEl.className = 'card-title';
+        titleEl.id = 'tract-title-' + n;
+        titleEl.textContent = item.title;
+
+        var footer = document.createElement('div');
+        footer.className = 'card-footer';
+
+        var refEl = document.createElement('span');
+        refEl.className = 'card-ref';
+        refEl.id = 'tract-ref-' + n;
+        refEl.textContent = item.verse_ref;
+
+        var arrowEl = document.createElement('span');
+        arrowEl.className = 'card-arrow';
+        arrowEl.textContent = '進入播放 →';
+
+        footer.appendChild(refEl);
+        footer.appendChild(arrowEl);
+
+        body.appendChild(titleEl);
+        body.appendChild(footer);
+
+        a.appendChild(thumbWrap);
+        a.appendChild(body);
+        return a;
+      }
+
+      FALLBACK_TRACTS.forEach(function (item) {
+        grid.appendChild(createCard(item));
+      });
+
+      FALLBACK_TRACTS.forEach(function (fallback) {
+        var n = fallback.id;
+        fetch('data/t' + n + '.json')
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            if (!data || typeof data !== 'object') return;
+            var titleEl = document.getElementById('tract-title-' + n);
+            var refEl = document.getElementById('tract-ref-' + n);
+            if (titleEl && typeof data.title === 'string' && data.title.trim()) {
+              titleEl.textContent = data.title.trim();
+            }
+            var ref = data.verse_ref;
+            if ((!ref || !String(ref).trim()) && Array.isArray(data.scenes)) {
+              for (var i = 0; i < data.scenes.length; i++) {
+                if (data.scenes[i] && data.scenes[i].ref) {
+                  ref = data.scenes[i].ref;
+                  break;
+                }
+              }
+            }
+            if (refEl && typeof ref === 'string' && ref.trim()) {
+              refEl.textContent = ref.trim().replace(/^[—－\-]+/, '');
+            }
+          })
+          .catch(function () {
+            // Keep hardcoded fallback title and verse_ref
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

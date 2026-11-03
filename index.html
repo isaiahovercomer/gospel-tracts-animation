@@ -101,7 +101,7 @@
 
         var numBadge = document.createElement('span');
         numBadge.className = 'card-number';
-        numBadge.textContent = String(n);
+        numBadge.textContent = String(item.pos || n);
 
         var playPill = document.createElement('span');
         playPill.className = 'card-play-pill';
@@ -142,7 +142,13 @@
         return a;
       }
 
-      FALLBACK_TRACTS.forEach(function (item) {
+      // 彩虹順序：紅→橙→黃→綠→青→藍
+      var RAINBOW_ORDER = [6, 1, 2, 3, 4, 5];
+      FALLBACK_TRACTS.sort(function (a, b) {
+        return RAINBOW_ORDER.indexOf(a.id) - RAINBOW_ORDER.indexOf(b.id);
+      });
+      FALLBACK_TRACTS.forEach(function (item, idx) {
+        item.pos = idx + 1;
         grid.appendChild(createCard(item));
       });
 

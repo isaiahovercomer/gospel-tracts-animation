@@ -514,19 +514,65 @@
       "type": "verse",
       "img": "front",
       "cam_from": [
-        306,
-        532,
-        479,
-        852
+        1124,
+        0,
+        793,
+        1410
       ],
       "cam_to": [
+        1124,
+        0,
+        793,
+        1410
+      ],
+      "text": "『作兒女的，要凡事順從父母，因為這在主裏是可喜悅的。作父親的，不要惹你們兒女的氣，免得他們灰心喪志。』",
+      "ref": "西三20",
+      "text_pos": "top",
+      "sprites": [],
+      "orig_cam_from": [
+        380,
+        660,
+        594,
+        1056
+      ],
+      "orig_cam_to": [
+        440,
+        720,
+        513,
+        912
+      ],
+      "orig_sprites": [
+        {
+          "region": "center_pink_branches",
+          "x": 0.84,
+          "y": 0.15,
+          "w": 0.24,
+          "motion": "sway"
+        }
+      ],
+      "orig_text_pos": "bottom-left",
+      "start": 184.08,
+      "duration": 17.34,
+      "audio": "audio/t1/s09.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 15.84
+    },
+    {
+      "type": "prayer",
+      "img": "front",
+      "cam_from": [
         355,
         581,
         414,
         735
       ],
-      "text": "『作兒女的，要凡事順從父母，因為這在主裏是可喜悅的。作父親的，不要惹你們兒女的氣，免得他們灰心喪志。』",
-      "ref": "西三20",
+      "cam_to": [
+        306,
+        532,
+        479,
+        852
+      ],
+      "text": "主耶穌，謝謝你把孩子賜給我們，使我們的家能在你裏面享受甜美的親子關係。求你保守我們作父母的，不惹兒女的氣，常常親近他們、幫助他們；也使孩子們學習凡事順從父母，在你裏面成為可喜悅的。主耶穌，願你作我們全家的中心，感謝主！",
       "text_pos": "bottom-left",
       "sprites": [
         {
@@ -537,13 +583,13 @@
           "motion": "sway"
         }
       ],
-      "start": 184.08,
-      "duration": 17.34,
-      "audio": "audio/t1/s09.mp3",
+      "start": 201.42,
+      "duration": 28.764,
+      "audio": "audio/t1/s10.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 15.84
+      "audio_dur": 27.264
     }
   ],
-  "total": 202.42,
+  "total": 231.184,
   "bgm": "audio/bgm.mp3"
 }

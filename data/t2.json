@@ -461,19 +461,65 @@
       "type": "verse",
       "img": "front",
       "cam_from": [
-        331,
-        377,
-        581,
-        1032
+        1153,
+        0,
+        793,
+        1410
       ],
       "cam_to": [
+        1153,
+        0,
+        793,
+        1410
+      ],
+      "text": "『他們天天同心合意，…存著歡躍單純的心用飯，讚美神，在眾民面前有恩典。主將得救的人，天天和他們加在一起。』",
+      "ref": "徒二46",
+      "text_pos": "top",
+      "sprites": [],
+      "orig_cam_from": [
+        410,
+        468,
+        720,
+        1280
+      ],
+      "orig_cam_to": [
+        445,
+        535,
+        675,
+        1200
+      ],
+      "orig_sprites": [
+        {
+          "region": "house_illustration_right",
+          "x": 0.86,
+          "y": 0.08,
+          "w": 0.16,
+          "motion": "sway"
+        }
+      ],
+      "orig_text_pos": "bottom-left",
+      "start": 139.128,
+      "duration": 18.66,
+      "audio": "audio/t2/s09.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 17.16
+    },
+    {
+      "type": "prayer",
+      "img": "front",
+      "cam_from": [
         359,
         431,
         544,
         968
       ],
-      "text": "『他們天天同心合意，…存著歡躍單純的心用飯，讚美神，在眾民面前有恩典。主將得救的人，天天和他們加在一起。』",
-      "ref": "徒二46",
+      "cam_to": [
+        331,
+        377,
+        581,
+        1032
+      ],
+      "text": "主耶穌，讚美你！你喜歡我們全家天天同心合意，存著歡躍單純的心一同用飯、一同讚美神。求你使我們的家庭時光充滿你的同在，也將得救的人天天加給我們。主耶穌，願我們的家成為你恩典的見證，感謝主！",
       "text_pos": "bottom-left",
       "sprites": [
         {
@@ -484,13 +530,13 @@
           "motion": "sway"
         }
       ],
-      "start": 139.128,
-      "duration": 18.66,
-      "audio": "audio/t2/s09.mp3",
+      "start": 157.788,
+      "duration": 26.1,
+      "audio": "audio/t2/s10.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 17.16
+      "audio_dur": 24.6
     }
   ],
-  "total": 158.788,
+  "total": 184.888,
   "bgm": "audio/bgm.mp3"
 }

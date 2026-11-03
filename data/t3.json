@@ -432,27 +432,66 @@
       "type": "verse",
       "img": "front",
       "cam_from": [
-        210,
-        161,
-        697,
-        1239
+        1192,
+        0,
+        793,
+        1410
       ],
       "cam_to": [
-        347,
-        613,
-        435,
-        774
+        1193,
+        4,
+        791,
+        1406
       ],
       "text": "『使你們無可指摘、純潔無雜，在彎曲悖謬的世代中，作神無瑕疵的兒女；你們在其中好像發光之體顯在世界裏。』",
       "ref": "腓二15",
       "text_pos": "top",
+      "orig_cam_from": [
+        260,
+        200,
+        864,
+        1536
+      ],
+      "orig_cam_to": [
+        430,
+        760,
+        540,
+        960
+      ],
+      "orig_sprites": [],
+      "orig_text_pos": "top",
+      "sprites": [],
       "start": 164.868,
       "duration": 16.668,
       "audio": "audio/t3/s08.mp3",
       "audio_offset": 0.5,
       "audio_dur": 15.168
+    },
+    {
+      "type": "prayer",
+      "img": "front",
+      "cam_from": [
+        347,
+        613,
+        435,
+        774
+      ],
+      "cam_to": [
+        210,
+        161,
+        697,
+        1239
+      ],
+      "text": "主耶穌，這個世代彎曲悖謬，但你是我們孩子最好的保護。求你用你的話充滿他們的心，使他們無可指摘、純潔無雜，作神無瑕疵的兒女。主啊，願我們全家都像發光之體，在這世代中把你照耀出來，感謝主！",
+      "text_pos": "top",
+      "sprites": [],
+      "start": 181.536,
+      "duration": 24.924,
+      "audio": "audio/t3/s09.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 23.424
     }
   ],
-  "total": 182.536,
+  "total": 207.46,
   "bgm": "audio/bgm.mp3"
 }

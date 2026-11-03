@@ -541,27 +541,66 @@
       "type": "verse",
       "img": "front",
       "cam_from": [
-        66,
-        491,
-        517,
-        918
+        1087,
+        0,
+        806,
+        1410
       ],
       "cam_to": [
-        123,
-        557,
-        480,
-        853
+        1087,
+        0,
+        806,
+        1410
       ],
       "text": "『照樣，作丈夫的，要按情理與妻子同住，因為她是比你軟弱的器皿，…是與你一同承受生命之恩的…』",
       "ref": "彼前三7",
-      "text_pos": "top-right",
+      "text_pos": "top",
+      "orig_cam_from": [
+        80,
+        599,
+        630,
+        1120
+      ],
+      "orig_cam_to": [
+        150,
+        679,
+        585,
+        1040
+      ],
+      "orig_sprites": [],
+      "orig_text_pos": "top-right",
+      "sprites": [],
       "start": 183.36,
       "duration": 14.508,
       "audio": "audio/t6/s09.mp3",
       "audio_offset": 0.5,
       "audio_dur": 13.008
+    },
+    {
+      "type": "prayer",
+      "img": "front",
+      "cam_from": [
+        123,
+        557,
+        480,
+        853
+      ],
+      "cam_to": [
+        66,
+        491,
+        517,
+        918
+      ],
+      "text": "主耶穌，謝謝你賜給我們婚姻，也賜給我們一同承受生命之恩的配偶。求你使作丈夫的按情理體貼妻子、敬重她；也使夫妻同心，在你裏面彼此相愛。主啊，願我們和諧的家成為孩子的幸福堡壘，感謝主！",
+      "text_pos": "top-right",
+      "sprites": [],
+      "start": 197.868,
+      "duration": 24.3,
+      "audio": "audio/t6/s10.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 22.8
     }
   ],
-  "total": 198.868,
+  "total": 223.168,
   "bgm": "audio/bgm.mp3"
 }

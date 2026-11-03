@@ -490,19 +490,65 @@
       "type": "verse",
       "img": "front",
       "cam_from": [
-        355,
-        258,
-        617,
-        1097
+        1111,
+        0,
+        793,
+        1410
       ],
       "cam_to": [
+        1111,
+        0,
+        793,
+        1410
+      ],
+      "text": "『那把他們賜給我的父，比萬有都大，誰也不能從我父手裏把他們奪去。』",
+      "ref": "約十29",
+      "text_pos": "top",
+      "sprites": [],
+      "orig_cam_from": [
+        440,
+        320,
+        765,
+        1360
+      ],
+      "orig_cam_to": [
+        540,
+        500,
+        675,
+        1200
+      ],
+      "orig_sprites": [
+        {
+          "region": "raindrop_right_blue",
+          "x": 0.86,
+          "y": 0.44,
+          "w": 0.14,
+          "motion": "float"
+        }
+      ],
+      "orig_text_pos": "top",
+      "start": 141.168,
+      "duration": 12.516,
+      "audio": "audio/t5/s07.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 11.016
+    },
+    {
+      "type": "prayer",
+      "img": "front",
+      "cam_from": [
         435,
         403,
         544,
         968
       ],
-      "text": "『那把他們賜給我的父，比萬有都大，誰也不能從我父手裏把他們奪去。』",
-      "ref": "約十29",
+      "cam_to": [
+        355,
+        258,
+        617,
+        1097
+      ],
+      "text": "主耶穌，謝謝你是我們孩子一生的守護者。那把他們賜給你的父比萬有都大，誰也不能從父手裏把他們奪去。主啊，我們把孩子交在你手裏，不再憂慮，求你親自牧養、保守他們的一生。主耶穌，我們愛你，感謝主！",
       "text_pos": "top",
       "sprites": [
         {
@@ -513,13 +559,13 @@
           "motion": "float"
         }
       ],
-      "start": 141.168,
-      "duration": 12.516,
-      "audio": "audio/t5/s07.mp3",
+      "start": 153.684,
+      "duration": 26.076,
+      "audio": "audio/t5/s08.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 11.016
+      "audio_dur": 24.576
     }
   ],
-  "total": 154.684,
+  "total": 180.76,
   "bgm": "audio/bgm.mp3"
 }

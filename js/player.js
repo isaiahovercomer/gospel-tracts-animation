@@ -5,7 +5,7 @@
   var STAGE_H = 1920;
   var CROSSFADE_SEC = 1.1;
   var VIEW_MORPH_SEC = 2.0;
-  var CONTROLS_H = 56;
+  var CONTROLS_H = 76;
   var CHAR_FADE_SEC = 0.25;
 
   var FALLBACK_META = {
@@ -78,6 +78,15 @@
   var playStartPerf = 0;
   var pausedAtTime = 0;
   var bgmAudio = null;
+  var audioCtx = null;
+  var bgmGain = null;
+  var audioUnlocked = false;
+  var BGM_HI = 0.30;   // between narration lines
+  var BGM_LO = 0.16;   // ducked under narration
+  var DUCK_RAMP = 0.5; // seconds
+  var segModels = [];
+  var blobUrls = {};
+  var playBtnIcon = playBtn ? playBtn.querySelector('.play-icon') : null;
 
   function clamp(val, min, max) {
     return val < min ? min : (val > max ? max : val);
@@ -159,12 +168,13 @@
           src: src,
           width: img.naturalWidth || 2000,
           height: img.naturalHeight || 1410,
-          ok: ok
+          ok: ok,
+          img: img
         });
       }
       var timer = setTimeout(function () {
         finish(false);
-      }, 4000);
+      }, 20000);
       img.onload = function () {
         clearTimeout(timer);
         if (img.decode) {
@@ -179,6 +189,73 @@
       };
       img.src = src;
     });
+  }
+
+  // Pre-rendered soft backdrop (tiny canvas upscaled) instead of a live 28px CSS blur.
+  var backdropCache = {};
+  function softBackdropUrl(info) {
+    if (!info || !info.src) return '';
+    if (backdropCache[info.src]) return backdropCache[info.src];
+    var url = info.src;
+    try {
+      if (info.img && info.img.naturalWidth) {
+        var w1 = 28, h1 = Math.max(1, Math.round(w1 * info.img.naturalHeight / info.img.naturalWidth));
+        var c1 = document.createElement('canvas'); c1.width = w1; c1.height = h1;
+        var x1 = c1.getContext('2d'); x1.imageSmoothingEnabled = true; x1.imageSmoothingQuality = 'high';
+        x1.drawImage(info.img, 0, 0, w1, h1);
+        var w2 = 112, h2 = Math.max(1, Math.round(w2 * h1 / w1));
+        var c2 = document.createElement('canvas'); c2.width = w2; c2.height = h2;
+        var x2 = c2.getContext('2d'); x2.imageSmoothingEnabled = true; x2.imageSmoothingQuality = 'high';
+        x2.drawImage(c1, 0, 0, w2, h2);
+        url = c2.toDataURL('image/jpeg', 0.85);
+      }
+    } catch (_) { url = info.src; }
+    backdropCache[info.src] = url;
+    return url;
+  }
+
+  // Fetch every audio file fully (as a blob) before playback so nothing streams mid-scene.
+  function preloadAudioBlobs(urls, onProgress) {
+    var uniq = [];
+    urls.forEach(function (u) { if (u && uniq.indexOf(u) === -1) uniq.push(u); });
+    var done = 0;
+    if (!uniq.length || !window.fetch || !window.URL || !URL.createObjectURL) return Promise.resolve({});
+    var map = {};
+    function one(u) {
+      return fetch(u).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.blob();
+      }).then(function (b) {
+        map[u] = URL.createObjectURL(b);
+      }).catch(function () {}).then(function () {
+        done += 1;
+        if (onProgress) onProgress(done / uniq.length);
+      });
+    }
+    var queue = uniq.slice();
+    function worker() {
+      if (!queue.length) return Promise.resolve();
+      return one(queue.shift()).then(worker);
+    }
+    var all = Promise.all([worker(), worker(), worker(), worker()]).then(function () { return map; });
+    var timeout = new Promise(function (resolve) { setTimeout(function () { resolve(map); }, 45000); });
+    return Promise.race([all, timeout]);
+  }
+
+  function setLoading(frac) {
+    if (!playBtn || isRenderMode) return;
+    if (frac === null) {
+      playBtn.classList.remove('is-loading');
+      playBtn.disabled = false;
+      playBtn.setAttribute('aria-label', '播放');
+      if (playBtnLabel && playBtnLabel.textContent.indexOf('載入') === 0) playBtnLabel.textContent = '播放';
+      return;
+    }
+    playBtn.classList.add('is-loading');
+    playBtn.disabled = true;
+    playBtn.setAttribute('aria-label', '載入中');
+    playBtn.style.setProperty('--load', Math.round(frac * 100) + '%');
+    if (playBtnLabel) playBtnLabel.textContent = '載入中 ' + Math.round(frac * 100) + '%';
   }
 
   function defaultCamForSize(imgW, imgH) {
@@ -443,7 +520,7 @@
     var verseText = (typeof data.verse === 'string' && data.verse.trim()) ? data.verse.trim() : meta.verse;
     var verseRef = (typeof data.verse_ref === 'string' && data.verse_ref.trim()) ? data.verse_ref.trim() : meta.verse_ref;
 
-    document.title = title + ' — 兒童家長福音單張動畫版';
+    document.title = title + ' — 兒童家長福音單張';
     if (endTitleEl) {
       endTitleEl.textContent = title;
     }
@@ -541,7 +618,7 @@
       if (viewTo && imgInfo && imgInfo.src) {
         var backdrop = document.createElement('div');
         backdrop.className = 'scene-backdrop';
-        backdrop.style.backgroundImage = 'url("' + imgInfo.src + '")';
+        backdrop.style.backgroundImage = 'url("' + softBackdropUrl(imgInfo) + '")';
         sceneEl.appendChild(backdrop);
       }
       viewEl.appendChild(camLayer);
@@ -751,7 +828,7 @@
       if (!isRenderMode && sc.audio && typeof sc.audio === 'string') {
         audioEl = new Audio();
         audioEl.preload = 'auto';
-        audioEl.src = sc.audio;
+        audioEl.src = blobUrls[sc.audio] || sc.audio;
         audioEl.volume = 1.0;
       }
 
@@ -789,11 +866,11 @@
     window.__total = totalDuration;
 
     if (!isRenderMode) {
-      var bgmSrc = (typeof data.bgm === 'string' && data.bgm.trim()) ? data.bgm.trim() : 'audio/bgm.mp3';
+      var bgmSrc = (typeof data.bgm === 'string' && data.bgm.trim()) ? data.bgm.trim() : ('audio/bgm_t' + tractId + '.mp3');
       bgmAudio = new Audio();
       bgmAudio.preload = 'auto';
       bgmAudio.loop = true;
-      bgmAudio.src = bgmSrc;
+      bgmAudio.src = blobUrls[bgmSrc] || bgmSrc;
       bgmAudio.volume = 0;
     }
   }
@@ -930,18 +1007,14 @@
           if (p <= 0) {
             cm.el.style.opacity = '0';
             cm.el.style.transform = 'none';
-            cm.el.style.filter = 'none';
           } else if (p >= 1) {
             cm.el.style.opacity = '1';
             cm.el.style.transform = 'none';
-            cm.el.style.filter = 'none';
           } else {
             var e = 1 - (1 - p) * (1 - p);
             var dy = prefersReducedMotion ? 0 : (1 - e) * 10;
-            var blur = (1 - e) * 3.6;
             cm.el.style.opacity = e.toFixed(3);
             cm.el.style.transform = 'translate3d(0,' + dy.toFixed(2) + 'px,0)';
-            cm.el.style.filter = 'blur(' + blur.toFixed(2) + 'px)';
           }
         }
 
@@ -973,14 +1046,16 @@
       var sc = sceneModels[i];
       var isLast = i === count - 1;
       var preStart = i > 0 ? sc.start - CROSSFADE_SEC : sc.start;
+      var warmStart = i > 0 ? preStart - 0.9 : preStart;
       var activeEnd = isLast ? totalDuration + 0.01 : sc.end;
 
-      if (t >= preStart && t <= activeEnd) {
+      if (t >= warmStart && t <= activeEnd) {
         var opacity = 1;
         if (i > 0 && t < sc.start) {
-          opacity = easeInOutSine((t - preStart) / CROSSFADE_SEC);
+          // warm-up: nearly invisible but painted, so the GPU already has its layers
+          opacity = t < preStart ? 0.002 : Math.max(0.002, easeInOutSine((t - preStart) / CROSSFADE_SEC));
         }
-        renderSceneAt(sc, t, opacity);
+        renderSceneAt(sc, Math.max(t, preStart), opacity);
       } else if (sc.visible) {
         sc.el.style.display = 'none';
         sc.el.style.opacity = '0';
@@ -1014,6 +1089,15 @@
     if (key === lastCtrlKey) return;
     lastCtrlKey = key;
     if (ctrlFill) ctrlFill.style.width = pct.toFixed(3) + '%';
+    for (var si = 0; si < segModels.length; si++) {
+      var sm = segModels[si];
+      var on = t >= sm.start - 0.01 && t < sm.end;
+      if (on !== sm.on) {
+        sm.on = on;
+        sm.seg.classList.toggle('is-on', on);
+        sm.label.classList.toggle('is-on', on);
+      }
+    }
     if (ctrlThumb) ctrlThumb.style.left = pct.toFixed(3) + '%';
     if (ctrlCur) ctrlCur.textContent = fmtTime(t);
     if (ctrlTrack) {
@@ -1042,19 +1126,79 @@
   };
 
   // Interactive audio & playback controls
+  function bgmLevelAt(t) {
+    var duck = 0;
+    for (var i = 0; i < sceneModels.length; i++) {
+      var sc = sceneModels[i];
+      if (!sc.audioEl && isRenderMode) continue;
+      var a = sc.start + sc.audioOffset;
+      var b = a + sc.audioDur;
+      if (t < a - DUCK_RAMP || t > b + DUCK_RAMP) continue;
+      var e = Math.min(clamp((t - (a - DUCK_RAMP)) / DUCK_RAMP, 0, 1), clamp(((b + DUCK_RAMP) - t) / DUCK_RAMP, 0, 1));
+      e = easeInOutSine(e);
+      if (e > duck) duck = e;
+    }
+    var v = BGM_HI - (BGM_HI - BGM_LO) * duck;
+    v *= clamp(t / 1.0, 0, 1) * clamp((totalDuration - t) / 1.0, 0, 1); // 1 s fade in / out
+    return clamp(v, 0, 1);
+  }
+  window.__bgmLevelAt = function (t) { return bgmLevelAt(t); };
+
+  function setBgmLevel(v) {
+    if (!bgmAudio) return;
+    if (bgmGain && audioCtx) {
+      try { bgmGain.gain.setTargetAtTime(v, audioCtx.currentTime, 0.04); } catch (_) { bgmGain.gain.value = v; }
+    } else {
+      bgmAudio.volume = v;
+    }
+  }
+
+  // Called inside a user gesture: route BGM through a GainNode (iOS ignores element.volume)
+  // and unlock narration elements so later play() calls are allowed.
+  function unlockAudio(t) {
+    if (audioUnlocked || isRenderMode) return;
+    audioUnlocked = true;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (AC && bgmAudio && !audioCtx) {
+        audioCtx = new AC();
+        var srcNode = audioCtx.createMediaElementSource(bgmAudio);
+        bgmGain = audioCtx.createGain();
+        bgmGain.gain.value = 0;
+        srcNode.connect(bgmGain);
+        bgmGain.connect(audioCtx.destination);
+        bgmAudio.volume = 1;
+      }
+    } catch (_) { audioCtx = null; bgmGain = null; }
+    sceneModels.forEach(function (m) {
+      var a = m.audioEl;
+      if (!a || m.start + m.audioOffset < t + 2) return;
+      a.muted = true;
+      var pr = a.play();
+      var back = function () { if (!a.__want) { a.pause(); try { a.currentTime = 0; } catch (_) {} } a.muted = false; };
+      if (pr && pr.then) pr.then(back, function () { a.muted = false; }); else back();
+    });
+  }
+
   function syncAudioAt(t) {
     if (isRenderMode) return;
+    if (audioCtx && audioCtx.state === 'suspended' && playState === 'playing') {
+      audioCtx.resume().catch(function () {});
+    }
 
     if (bgmAudio) {
-      var bgmVol = 0.18;
-      if (t < 2.0) {
-        bgmVol = 0.18 * clamp(t / 2.0, 0, 1);
-      } else if (t > totalDuration - 2.0) {
-        bgmVol = 0.18 * clamp((totalDuration - t) / 2.0, 0, 1);
-      }
-      bgmAudio.volume = clamp(bgmVol, 0, 1);
-      if (bgmAudio.paused && playState === 'playing' && t < totalDuration) {
-        bgmAudio.play().catch(function () {});
+      setBgmLevel(bgmLevelAt(t));
+      if (playState === 'playing' && t < totalDuration) {
+        var bd = bgmAudio.duration;
+        if (bgmAudio.paused) {
+          bgmAudio.play().catch(function () {});
+        } else if (bd && isFinite(bd) && bd > 0) {
+          var bt = t % bd;
+          var bdiff = Math.abs(bgmAudio.currentTime - bt);
+          if (bdiff > 0.6 && bdiff < bd - 0.6) {
+            try { bgmAudio.currentTime = bt; } catch (_) {}
+          }
+        }
       }
     }
 
@@ -1063,19 +1207,26 @@
       if (!sc.audioEl) continue;
       var narStart = sc.start + sc.audioOffset;
       var narEnd = narStart + sc.audioDur + 0.25;
+      var a = sc.audioEl;
       if (t >= narStart && t < narEnd && playState === 'playing') {
         var targetTime = Math.max(0, t - narStart);
-        if (sc.audioEl.paused) {
+        a.__want = true;
+        a.muted = false;
+        if (a.paused) {
           try {
-            if (Math.abs(sc.audioEl.currentTime - targetTime) > 0.25) {
-              sc.audioEl.currentTime = targetTime;
+            if (Math.abs(a.currentTime - targetTime) > 0.25) {
+              a.currentTime = targetTime;
             }
           } catch (_) {}
-          sc.audioEl.play().catch(function () {});
+          a.play().catch(function () {});
+        } else if (Math.abs(a.currentTime - targetTime) > 0.3 && targetTime < sc.audioDur) {
+          // drift correction: keep voice locked to the picture
+          try { a.currentTime = targetTime; } catch (_) {}
         }
       } else {
-        if (!sc.audioEl.paused) {
-          sc.audioEl.pause();
+        a.__want = false;
+        if (!a.paused && !a.muted) {
+          a.pause();
         }
       }
     }
@@ -1133,6 +1284,7 @@
       resetAllAudio();
       pausedAtTime = 0;
     }
+    unlockAudio(pausedAtTime);
     playState = 'playing';
     playStartPerf = performance.now();
     if (startOverlay) startOverlay.classList.add('hidden');
@@ -1218,6 +1370,78 @@
     return clamp(x / Math.max(1, rect.width), 0, 1) * totalDuration;
   }
 
+  var BOOK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5C5.6 4.4 8.7 4.5 11 6v13c-2.3-1.5-5.4-1.6-8-.5z"/><path d="M21 5.5c-2.6-1.1-5.7-1-8 .5v13c2.3-1.5 5.4-1.6 8-.5z"/></svg>';
+  var HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 4 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.2 0 5.6 3.1 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>';
+  function buildSegments() {
+    var segLayer = ctrlTrack.querySelector('.ctrl-segs');
+    if (!segLayer) {
+      segLayer = document.createElement('div');
+      segLayer.className = 'ctrl-segs';
+      ctrlTrack.insertBefore(segLayer, ctrlTrack.querySelector('.ctrl-fill'));
+    }
+    var labelLayer = ctrlTrack.querySelector('.ctrl-seg-labels');
+    if (!labelLayer) {
+      labelLayer = document.createElement('div');
+      labelLayer.className = 'ctrl-seg-labels';
+      ctrlTrack.appendChild(labelLayer);
+    }
+    segLayer.innerHTML = '';
+    labelLayer.innerHTML = '';
+    segModels = [];
+    var verse = null, prayer = null;
+    sceneModels.forEach(function (m) {
+      if (m.type === 'verse' && !verse) verse = m;
+      if (m.type === 'prayer') prayer = m;
+    });
+    var defs = [];
+    if (verse) defs.push({ kind: 'verse', start: verse.start, end: prayer ? prayer.start : totalDuration, text: '經文', icon: BOOK_SVG });
+    if (prayer) defs.push({ kind: 'prayer', start: prayer.start, end: totalDuration, text: '禱告', icon: HEART_SVG });
+    defs.forEach(function (d, idx) {
+      var l = d.start / totalDuration * 100;
+      var r = 100 - d.end / totalDuration * 100;
+      var seg = document.createElement('span');
+      seg.className = 'ctrl-seg seg-' + d.kind;
+      seg.style.left = l.toFixed(3) + '%';
+      seg.style.right = Math.max(0, r).toFixed(3) + '%';
+      segLayer.appendChild(seg);
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ctrl-seg-label seg-' + d.kind;
+      b.innerHTML = d.icon + '<span>' + d.text + '</span>';
+      b.setAttribute('aria-label', '跳到' + d.text);
+      // last label hugs the right edge; earlier ones end where the next section begins
+      b.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!isReady) return;
+        seekTo(d.start + 0.02, true);
+      });
+      labelLayer.appendChild(b);
+      segModels.push({ seg: seg, label: b, start: d.start, end: d.end, on: null });
+    });
+    layoutSegLabels();
+  }
+
+  // Place labels right-to-left so they never overlap on narrow phones:
+  // each label ends at its section's end (last one at the right edge), pushed left if needed.
+  function layoutSegLabels() {
+    if (!ctrlTrack || !segModels.length) return;
+    var W = ctrlTrack.clientWidth;
+    if (!W) return;
+    var limit = W;
+    for (var i = segModels.length - 1; i >= 0; i--) {
+      var m = segModels[i];
+      var w = m.label.offsetWidth;
+      var want = i === segModels.length - 1 ? W : (m.end / totalDuration) * W + w * 0.25;
+      var right = Math.min(want, limit);
+      var left = Math.max(0, right - w);
+      m.label.style.right = 'auto';
+      m.label.style.left = left.toFixed(1) + 'px';
+      limit = left - 4;
+    }
+  }
+  window.addEventListener('resize', function () { layoutSegLabels(); });
+
   function setupControls() {
     if (!controlsEl || isRenderMode) return;
     if (ctrlTot) ctrlTot.textContent = fmtTime(totalDuration);
@@ -1233,6 +1457,7 @@
           ticks.appendChild(tk);
         }
       }
+      buildSegments();
     }
     updateControls(currentTime);
   }
@@ -1327,6 +1552,16 @@
     }
   }
 
+  // Background music: Kevin MacLeod (incompetech.com), CC BY 4.0 — attribution required.
+  var MUSIC_CREDITS = {"1": {"title": "Water Droplets on the River", "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100427"}, "2": {"title": "Somewhere Sunny (ver 2)", "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100567"}, "3": {"title": "Continue Life", "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100282"}, "4": {"title": "Simple Duet", "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100074"}, "5": {"title": "Eternal Hope", "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100238"}, "6": {"title": "Two Together", "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100031"}};
+  function setupCredit() {
+    var el = document.getElementById('music-credit');
+    var c = MUSIC_CREDITS[tractId];
+    if (!el || !c || isRenderMode) return;
+    el.innerHTML = '配樂：<a href="' + c.url + '" target="_blank" rel="noopener">“' + c.title + '”</a> Kevin MacLeod (incompetech.com)，' +
+      '採用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> 授權（已剪接循環、調整音量）';
+  }
+
   function setupCard(data) {
     var section = document.getElementById('card-section');
     if (!section || isRenderMode) return;
@@ -1368,19 +1603,33 @@
         var frontSrc = imagesCfg.front || ('img/t' + tractId + '_front.jpg');
         var backSrc = imagesCfg.back || ('img/t' + tractId + '_back.jpg');
 
+        var audioUrls = [];
+        if (!isRenderMode) {
+          (data.scenes || []).forEach(function (s) { if (s && typeof s.audio === 'string') audioUrls.push(s.audio); });
+          audioUrls.push((typeof data.bgm === 'string' && data.bgm.trim()) ? data.bgm.trim() : ('audio/bgm_t' + tractId + '.mp3'));
+        }
+        var parts = { img: 0, aud: 0 };
+        var report = function () { setLoading(parts.img * 0.25 + parts.aud * 0.75); };
+        setLoading(0);
+        var imgCount = 0;
+        var trackImg = function (p) { return p.then(function (r) { imgCount += 1; parts.img = imgCount / 2; report(); return r; }); };
         return Promise.all([
           loadFontReady(),
-          preloadImage(frontSrc),
-          preloadImage(backSrc)
+          trackImg(preloadImage(frontSrc)),
+          trackImg(preloadImage(backSrc)),
+          isRenderMode ? Promise.resolve({}) : preloadAudioBlobs(audioUrls, function (f) { parts.aud = f; report(); })
         ]).then(function (results) {
+          blobUrls = results[3] || {};
           var loadedImages = {
             front: results[1],
             back: results[2]
           };
           buildScenes(data, loadedImages);
           isReady = true;
+          setLoading(null);
           setupControls();
           setupCard(data);
+          setupCredit();
 
           if (isRenderMode) {
             render(0);

@@ -366,6 +366,9 @@ body.render-mode *::after {
   height: 1920px;
   overflow: hidden;
   pointer-events: none;
+  /* opaque paper so the incoming scene fully covers the outgoing one (no jump when it is removed) */
+  background: var(--bg);
+  contain: layout paint;
   will-change: opacity;
 }
 
@@ -492,7 +495,6 @@ body.render-mode *::after {
 .char {
   display: inline-block;
   opacity: 0;
-  will-change: opacity, transform, filter;
 }
 
 .char-space {
@@ -723,9 +725,8 @@ body.render-mode #ui-layer {
   inset: -60px;
   background-size: cover;
   background-position: center;
-  filter: blur(28px) saturate(1.15);
+  /* already blurred: a tiny pre-rendered image upscaled (see softBackdropUrl in player.js) */
   opacity: 0.42;
-  transform: scale(1.08);
 }
 
 .scene-backdrop::after {
@@ -777,7 +778,7 @@ body.render-mode #ui-layer {
 
 /* ===== Controls bar ===== */
 .controls {
-  height: 56px;
+  height: 76px;
   min-width: 300px;
   display: flex;
   align-items: center;
@@ -834,7 +835,7 @@ body.render-mode #ui-layer {
 .ctrl-track {
   position: relative;
   flex: 1 1 auto;
-  height: 44px;
+  height: 66px;
   cursor: pointer;
   touch-action: none;
   outline: none;
@@ -844,7 +845,7 @@ body.render-mode #ui-layer {
 .ctrl-fill {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 70%;
   height: 8px;
   margin-top: -4px;
   border-radius: 999px;
@@ -1034,3 +1035,122 @@ body.render-mode #ui-layer {
 .home-title { flex-direction: column; align-items: center; font-size: clamp(2rem, 9.6vw, 3.6rem); }
 .home-title .tl { display: flex; justify-content: center; }
 .home-title .tc { -webkit-text-stroke: 0; text-shadow: 0 3px 0 #fff, 0 5px 12px rgba(190,110,90,0.25); }
+
+
+/* ===== Round 3: 進度條上的「經文／禱告」段落 ===== */
+.ctrl-tick { top: 70%; }
+.ctrl-thumb { top: 70%; }
+.ctrl-segs { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.ctrl-seg {
+  position: absolute;
+  top: 70%;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 999px;
+  opacity: 0.88;
+  box-shadow: 0 0 0 2px #fffaf5;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.ctrl-seg.seg-verse { background: linear-gradient(90deg, #f4c96b, #e2a43a); }
+.ctrl-seg.seg-prayer { background: linear-gradient(90deg, #f6a6bd, #e4708f); }
+.ctrl-seg.is-on { opacity: 1; transform: scaleY(1.25); }
+.ctrl-seg-labels { position: absolute; left: 0; right: 0; top: 2px; height: 26px; z-index: 4; }
+.ctrl-seg-label {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 24px;
+  padding: 0 7px 0 5px;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-main);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(80, 40, 20, 0.18);
+  transition: transform 0.2s ease;
+}
+.ctrl-seg-label svg { width: 14px; height: 14px; fill: currentColor; flex: 0 0 auto; }
+.ctrl-seg-label.seg-verse { background: #d9962c; }
+.ctrl-seg-label.seg-prayer { background: #de5f84; }
+.ctrl-seg-label.is-on { transform: translateY(-1px) scale(1.06); }
+.ctrl-seg-label:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 460px) {
+  #ctrl-tot { display: none; }
+  .controls { gap: 8px; padding: 0 10px; }
+}
+
+/* 載入中：先把圖片與聲音全部載入再播放 */
+.play-circle-btn.is-loading {
+  cursor: progress;
+  background: conic-gradient(rgba(255, 255, 255, 0.35) var(--load, 0%), rgba(184, 55, 36, 0.78) 0);
+  animation: loadPulse 1.6s ease-in-out infinite;
+}
+.play-circle-btn.is-loading .play-icon { opacity: 0.55; }
+.play-circle-btn.is-loading .play-label { font-size: 30px; }
+.play-circle-btn:disabled:hover { transform: none; }
+@keyframes loadPulse { 0%, 100% { box-shadow: 0 20px 55px rgba(45, 20, 12, 0.3), 0 0 0 14px rgba(255, 255, 255, 0.18); } 50% { box-shadow: 0 20px 55px rgba(45, 20, 12, 0.3), 0 0 0 26px rgba(255, 255, 255, 0.28); } }
+
+/* 配樂出處（CC BY 4.0） */
+.music-credit { margin: 1.6rem auto 0; font-size: 0.78rem; line-height: 1.6; opacity: 0.7; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+.music-credit a { color: inherit; }
+
+
+/* ===== Round 3: 首頁單一暖色系（珊瑚粉） ===== */
+.home-body {
+  --warm-900: #a9473a;
+  --warm-700: #d0654f;
+  --warm-500: #e88c76;
+  --warm-300: #f5bfae;
+  --warm-100: #fde9e2;
+}
+body.home-body {
+  background-color: #fdf6f2;
+  background-image:
+    radial-gradient(ellipse 55% 45% at 12% 12%, rgba(245, 191, 174, 0.45) 0%, rgba(245, 191, 174, 0) 70%),
+    radial-gradient(ellipse 55% 45% at 90% 85%, rgba(253, 222, 210, 0.55) 0%, rgba(253, 222, 210, 0) 70%);
+}
+.blob-pink { background: var(--warm-300); }
+.blob-green { background: var(--warm-100); }
+.blob-cream { background: #fbd9cb; }
+.hero-deco, .home-badge, .home-subtitle { display: none !important; }
+.home-header { margin-bottom: 2rem; }
+.title-art { display: block; width: 116px; height: auto; margin: 0 auto 0.2rem; }
+.title-art .ta-heart { fill: var(--warm-500); }
+.title-art .ta-c2 { fill: var(--warm-700); }
+.title-art .ta-c1 { fill: var(--warm-500); }
+.title-art .ta-line { fill: none; stroke: var(--warm-300); stroke-width: 4; stroke-linecap: round; }
+.title-art .ta-book { fill: #fff; stroke: var(--warm-700); stroke-width: 2.4; }
+.title-art .ta-bookline { stroke: var(--warm-300); stroke-width: 1.6; stroke-linecap: round; }
+.home-title {
+  display: block;
+  font-family: var(--font-cute);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 9.4vw, 3.6rem);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: var(--warm-700);
+  -webkit-text-stroke: 0;
+  text-shadow: 0 3px 0 #fff, 0 4px 0 var(--warm-100), 0 8px 18px rgba(208, 101, 79, 0.18);
+  white-space: nowrap;
+}
+.title-wave { color: var(--warm-300); }
+.hero-art { box-shadow: 0 14px 34px rgba(208, 101, 79, 0.18); }
+.foot-heart { color: var(--warm-500); }
+.home-footer { color: var(--warm-900); }
+.social-links { display: flex; justify-content: center; gap: 14px; margin-top: 1rem; }
+.social-btn {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--warm-700); color: #fff;
+  box-shadow: 0 6px 14px rgba(208, 101, 79, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.social-btn:hover, .social-btn:focus-visible { background: var(--warm-900); transform: translateY(-2px); }
+.social-btn svg { width: 24px; height: 24px; fill: currentColor; }

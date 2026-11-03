@@ -1,6 +1,4 @@
-Copyright (c) 2020, Yu Ching Sung (游清松), JasonHandwriting4 (清松手寫體4).
-Source: https://github.com/jasonhandwriting/JasonHandwriting
-title_a.woff2 is a subset (8 glyphs) of JasonHandwriting4.ttf.
+Copyright 2020 The Mochiypop Project Authors (https://github.com/fontdasu/Mochiypop)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

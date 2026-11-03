@@ -1155,8 +1155,8 @@ body.home-body {
 .social-btn:hover, .social-btn:focus-visible { background: var(--warm-900); transform: translateY(-2px); }
 .social-btn svg { width: 24px; height: 24px; fill: currentColor; }
 
-/* ===== Round 4: playful title — 清松手寫體4 (JasonHandwriting4, SIL OFL 1.1), subset to 8 title chars ===== */
-@font-face { font-family: 'TitleA'; src: url('../fonts/title_a.woff2') format('woff2'); font-display: block; }
+/* ===== Round 4: playful title — Mochiy Pop One (SIL OFL 1.1), subset to 8 title chars ===== */
+@font-face { font-family: 'TitleB'; src: url('../fonts/title_b.woff2') format('woff2'); font-display: block; }
 .home-header .title-art { display: none; }
 .fun-title { display: flex; flex-direction: column; align-items: center; gap: 0.05em; margin: 0.9rem 0 0.2rem; letter-spacing: 0; white-space: nowrap; }
 .fun-title .ft-line { display: flex; justify-content: center; align-items: flex-end; }
@@ -1173,7 +1173,7 @@ body.home-body {
 .fun-title .p-br { bottom: -0.12em; right: -0.24em; transform: rotate(10deg); }
 .fun-title .p-left { width: 0.62em; height: 0.62em; left: -0.62em; bottom: 0.06em; }
 .fun-title .p-right { width: 0.58em; height: 0.58em; right: -0.64em; bottom: 0.08em; transform: rotate(8deg); }
-.ft-a { font-family: 'TitleA', var(--font-cute); font-size: clamp(2.9rem, 15vw, 4.8rem); line-height: 1.12; color: var(--warm-700);
-  text-shadow: 0 2px 0 #fff, 0 4px 0 var(--warm-100), 0 8px 16px rgba(208,101,79,0.18); }
-.ft-a .fc { -webkit-text-stroke: 0.025em currentColor; }
+.ft-b { font-family: 'TitleB', var(--font-cute); font-size: clamp(2.9rem, 14vw, 4.8rem); line-height: 1.12; color: var(--warm-700);
+  text-shadow: 3px 3px 0 #fff, -3px 3px 0 #fff, 3px -3px 0 #fff, -3px -3px 0 #fff, 0 7px 0 var(--warm-300), 0 12px 18px rgba(208,101,79,0.2); }
+.ft-b .fd { filter: drop-shadow(0 2px 0 #fff); }
 @media (min-width: 720px) { .fun-title { flex-direction: row; gap: 0; } .fun-title .ft-line + .ft-line { margin-left: 0.55em; } }

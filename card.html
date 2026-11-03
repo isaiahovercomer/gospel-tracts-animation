@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>經文禱告圖文卡</title>
+<style>
+@font-face { font-family: 'WenKai'; src: url('fonts/wenkai.woff2') format('woff2'); }
+@font-face { font-family: 'PrayerHand'; src: url('fonts/prayer.woff2') format('woff2'); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #ddd; font-family: 'WenKai', serif; }
+#card {
+  width: 1080px; padding: 64px 70px 54px; position: relative; overflow: hidden;
+  background: radial-gradient(circle at 15% 0%, #fffaf3 0%, var(--bg, #f6e7df) 70%);
+  color: var(--ink, #462c22);
+}
+#card::before, #card::after { content: ''; position: absolute; border-radius: 50%; opacity: .35; }
+#card::before { width: 420px; height: 420px; right: -160px; top: 360px; background: radial-gradient(circle, #f6c6b6 0%, rgba(246,198,182,0) 70%); }
+#card::after { width: 380px; height: 380px; left: -150px; bottom: -120px; background: radial-gradient(circle, #cfe3c4 0%, rgba(207,227,196,0) 70%); }
+.top { display: flex; align-items: center; gap: 34px; position: relative; z-index: 1; }
+.pic { width: 300px; height: 300px; border-radius: 50%; background-size: cover; flex: 0 0 auto;
+  box-shadow: 0 0 0 12px #fffdf8, 0 18px 40px rgba(58,34,22,.22); }
+.tag { font-size: 28px; letter-spacing: .14em; color: var(--accent, #b83724); margin-bottom: 12px; }
+.title { font-size: 56px; font-weight: 700; line-height: 1.3; }
+.sec { position: relative; z-index: 1; margin-top: 46px; }
+.label { display: inline-block; font-size: 30px; letter-spacing: .2em; color: #fff; background: var(--accent, #b83724);
+  padding: 6px 22px 6px 26px; border-radius: 999px; margin-bottom: 20px; }
+.verse { font-size: 50px; line-height: 1.62; letter-spacing: .04em; background: rgba(255,253,249,.78);
+  padding: 34px 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(58,34,22,.08); }
+.verse .hl { color: var(--accent, #b83724); font-weight: 700; }
+.ref { text-align: right; font-size: 40px; font-weight: 700; color: var(--accent, #b83724); margin-top: 10px; }
+.divider { text-align: center; font-size: 34px; color: var(--accent, #b83724); margin: 36px 0 0; letter-spacing: 1em; opacity: .7; }
+.prayer { font-family: 'PrayerHand', 'WenKai', serif; -webkit-text-stroke: 1.1px currentColor; font-size: 44px; line-height: 1.72;
+  letter-spacing: .06em; background: #fffaf1; padding: 34px 42px; border-radius: 16px 40px 18px 36px;
+  box-shadow: 0 12px 32px rgba(58,34,22,.12); color: #4a2e22; }
+.amen { text-align: right; }
+.foot { position: relative; z-index: 1; margin-top: 40px; text-align: center; font-size: 26px; letter-spacing: .12em; opacity: .62; }
+</style>
+</head>
+<body>
+<div id="card">
+  <div class="top">
+    <div class="pic" id="pic"></div>
+    <div><div class="tag" id="tag">福音單張</div><div class="title" id="title"></div></div>
+  </div>
+  <div class="sec"><span class="label">經文</span>
+    <div class="verse" id="verse"></div><div class="ref" id="ref"></div></div>
+  <div class="divider">♡ ♡ ♡</div>
+  <div class="sec" style="margin-top:22px"><span class="label">一起禱告</span>
+    <div class="prayer" id="prayer"></div></div>
+  <div class="foot">兒童家長福音單張動畫版</div>
+</div>
+<script>
+(function () {
+  var n = parseInt((new URLSearchParams(location.search).get('t') || '1').replace(/\D+/g, ''), 10) || 1;
+  window.__cardReady = fetch('data/t' + n + '.json').then(function (r) { return r.json(); }).then(function (d) {
+    var p = d.palette || {};
+    var c = document.getElementById('card');
+    if (p.bg) c.style.setProperty('--bg', p.bg);
+    if (p.ink) c.style.setProperty('--ink', p.ink);
+    if (p.accent) c.style.setProperty('--accent', p.accent);
+    document.getElementById('title').textContent = d.title;
+    document.getElementById('tag').textContent = '福音單張 第' + '一二三四五六'.charAt(n - 1) + '篇';
+    var v = d.verse || '';
+    var hl = (d.verse_highlight || []).filter(Boolean);
+    var html = v.replace(/[&<>]/g, function (ch) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[ch]; });
+    hl.forEach(function (h) { if (h && v.indexOf(h) >= 0) html = html.split(h).join('<span class="hl">' + h + '</span>'); });
+    document.getElementById('verse').innerHTML = html;
+    document.getElementById('ref').textContent = '—' + (d.verse_ref || '');
+    var prayer = '';
+    (d.scenes || []).forEach(function (s) { if (s.type === 'prayer') prayer = s.text; });
+    document.getElementById('prayer').textContent = prayer;
+    var cover = (d.scenes || [])[0] || {};
+    var cam = cover.cam_to || [0, 0, 2000, 1410];
+    var img = (d.images && d.images.front) || ('img/t' + n + '_front.jpg');
+    var sz = (d.size && d.size.front) || [2000, 1410];
+    var pic = document.getElementById('pic');
+    // square crop centred on the cover camera
+    var side = Math.min(cam[2], cam[3]) * 0.9, cx = cam[0] + cam[2] / 2, cy = cam[1] + cam[3] * 0.45;
+    var s = 300 / side;
+    pic.style.backgroundImage = 'url("' + img + '")';
+    pic.style.backgroundSize = (sz[0] * s) + 'px ' + (sz[1] * s) + 'px';
+    pic.style.backgroundPosition = (-(cx - side / 2) * s) + 'px ' + (-(cy - side / 2) * s) + 'px';
+    return Promise.all([document.fonts.load('50px WenKai'), document.fonts.load('44px PrayerHand')]).then(function () { return document.fonts.ready; });
+  });
+})();
+</script>
+</body>
+</html>

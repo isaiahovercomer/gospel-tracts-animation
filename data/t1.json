@@ -192,6 +192,20 @@
         762,
         1355
       ],
+      "r2_orig": {
+        "cam_from": [
+          195,
+          220,
+          810,
+          1440
+        ],
+        "cam_to": [
+          115,
+          68,
+          945,
+          1680
+        ]
+      },
       "start": 0.0,
       "duration": 3.0,
       "audio": null,
@@ -202,118 +216,217 @@
       "type": "text",
       "img": "front",
       "cam_from": [
-        266,
-        532,
-        479,
-        852
+        206,
+        560,
+        443,
+        787
       ],
       "cam_to": [
-        331,
-        589,
-        406,
-        723
+        391,
+        584,
+        425,
+        756
       ],
       "text": "好萊塢電影中，經常傳遞美國人的一個核心價值—看重家庭時光、保持良好的親子關係。從迪士尼的兒童電影、戰爭片，到風靡全球的動漫系列電影，無不以親子關係為主軸，並以感人的親情作為謝幕前的美好Ending…",
-      "text_pos": "bottom-right",
-      "sprites": [
-        {
-          "region": "center_pink_branches",
-          "x": 0.16,
-          "y": 0.14,
-          "w": 0.24,
-          "motion": "sway"
-        },
-        {
-          "region": "right_yellow_branches",
-          "x": 0.86,
-          "y": 0.18,
-          "w": 0.2,
-          "motion": "float"
-        }
-      ],
+      "text_pos": "top",
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          330,
+          660,
+          594,
+          1056
+        ],
+        "cam_to": [
+          410,
+          730,
+          504,
+          896
+        ],
+        "text_pos": "bottom-right",
+        "sprites": [
+          {
+            "region": "center_pink_branches",
+            "x": 0.16,
+            "y": 0.14,
+            "w": 0.24,
+            "motion": "sway"
+          },
+          {
+            "region": "right_yellow_branches",
+            "x": 0.86,
+            "y": 0.18,
+            "w": 0.2,
+            "motion": "float"
+          }
+        ]
+      },
+      "layout": "pan",
       "start": 3.0,
-      "duration": 24.228,
+      "duration": 25.284,
       "audio": "audio/t1/s01.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 22.728
+      "audio_dur": 23.784
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        226,
-        573,
-        435,
-        774
+        148,
+        681,
+        648,
+        556
       ],
       "cam_to": [
-        371,
-        573,
-        435,
-        774
+        281,
+        719,
+        559,
+        480
       ],
       "text": "然而這也呈現出，維持健康的親子關係是一件多麼不容易的事。從我們的成長經歷中也可以得知，產生代溝，可能也是我們未來必須面對的現實。這不禁令我們擔憂，今天抱在我們手中的孩子，會不會有一天就離我們遠去…",
       "text_pos": "bottom-left",
-      "sprites": [
-        {
-          "region": "left_yellow_branches",
-          "x": 0.14,
-          "y": 0.18,
-          "w": 0.2,
-          "motion": "drift"
-        },
-        {
-          "region": "center_pink_branches",
-          "x": 0.86,
-          "y": 0.14,
-          "w": 0.22,
-          "motion": "sway"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          280,
+          710,
+          540,
+          960
+        ],
+        "cam_to": [
+          460,
+          710,
+          540,
+          960
+        ],
+        "text_pos": "bottom-left",
+        "sprites": [
+          {
+            "region": "left_yellow_branches",
+            "x": 0.14,
+            "y": 0.18,
+            "w": 0.2,
+            "motion": "drift"
+          },
+          {
+            "region": "center_pink_branches",
+            "x": 0.86,
+            "y": 0.14,
+            "w": 0.22,
+            "motion": "sway"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 27.228,
-      "duration": 25.356,
+      "view_to": [
+        56,
+        110,
+        968,
+        831,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 883
+      },
+      "layout": "split_top",
+      "start": 28.284,
+      "duration": 25.74,
       "audio": "audio/t1/s02.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 23.856
+      "audio_dur": 24.24
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        363,
-        597,
-        392,
-        697
+        224,
+        717,
+        552,
+        472
       ],
       "cam_to": [
-        298,
-        548,
-        465,
-        826
+        269,
+        680,
+        640,
+        548
       ],
       "text": "但聖經中啟示，我們的神特別看重家庭、看重親子關係，以及世代的傳承：『我必與你並你世世代代的後裔堅立我的約…要作你和你後裔的神。』神與人的關係，神給人的救恩，不只是個人的，更是我們與孩子能一同享受的。",
       "text_pos": "bottom",
-      "sprites": [
-        {
-          "region": "center_pink_branches",
-          "x": 0.15,
-          "y": 0.14,
-          "w": 0.22,
-          "motion": "sway"
-        },
-        {
-          "region": "right_yellow_branches",
-          "x": 0.86,
-          "y": 0.16,
-          "w": 0.2,
-          "motion": "float"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          450,
+          740,
+          486,
+          864
+        ],
+        "cam_to": [
+          370,
+          680,
+          576,
+          1024
+        ],
+        "text_pos": "bottom",
+        "sprites": [
+          {
+            "region": "center_pink_branches",
+            "x": 0.15,
+            "y": 0.14,
+            "w": 0.22,
+            "motion": "sway"
+          },
+          {
+            "region": "right_yellow_branches",
+            "x": 0.86,
+            "y": 0.16,
+            "w": 0.2,
+            "motion": "float"
+          }
+        ]
+      },
+      "view_from": [
+        56,
+        110,
+        968,
+        831,
+        44,
+        0
       ],
-      "start": 52.584,
-      "duration": 24.756,
+      "view_to": [
+        56,
+        1037,
+        968,
+        827,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 120,
+        "w": 968,
+        "anchor": "top",
+        "maxh": 877
+      },
+      "layout": "split_bottom",
+      "start": 54.024,
+      "duration": 24.876,
       "audio": "audio/t1/s03.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 23.256
+      "audio_dur": 23.376
     },
     {
       "type": "text",
@@ -348,128 +461,298 @@
           "motion": "float"
         }
       ],
-      "start": 77.34,
-      "duration": 18.156,
+      "r2_orig": {
+        "cam_from": [
+          330,
+          140,
+          864,
+          1536
+        ],
+        "cam_to": [
+          410,
+          200,
+          792,
+          1408
+        ],
+        "text_pos": "top-left",
+        "sprites": [
+          {
+            "region": "top_left_decor",
+            "x": 0.88,
+            "y": 0.42,
+            "w": 0.16,
+            "motion": "sway"
+          },
+          {
+            "region": "mother_child_illustration",
+            "x": 0.82,
+            "y": 0.82,
+            "w": 0.22,
+            "motion": "float"
+          }
+        ]
+      },
+      "text_box": {
+        "x": 76,
+        "y": 572,
+        "w": 760,
+        "anchor": "top",
+        "maxh": 980
+      },
+      "layout": "full",
+      "view_from": [
+        56,
+        1037,
+        968,
+        827,
+        44,
+        0
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 78.9,
+      "duration": 17.964,
       "audio": "audio/t1/s04.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 16.656
+      "audio_dur": 16.464
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        395,
-        556,
-        450,
-        800
+        397,
+        719,
+        433,
+        476
       ],
       "cam_to": [
-        331,
-        589,
-        414,
-        735
+        294,
+        681,
+        502,
+        552
       ],
       "text": "你們必須學習和你的兒女接近，歡喜幫助他，讓他們有難處的時候會告訴你，軟弱的時候會請求你。不是說，他們軟弱的時候，就去請求別人。軟弱的時候能尋你，成功的時候能告訴你。",
       "text_pos": "bottom-right",
-      "sprites": [
-        {
-          "region": "center_pink_branches",
-          "x": 0.84,
-          "y": 0.14,
-          "w": 0.24,
-          "motion": "drift"
-        },
-        {
-          "region": "left_yellow_branches",
-          "x": 0.14,
-          "y": 0.2,
-          "w": 0.2,
-          "motion": "sway"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          490,
+          690,
+          558,
+          992
+        ],
+        "cam_to": [
+          410,
+          730,
+          513,
+          912
+        ],
+        "text_pos": "bottom-right",
+        "sprites": [
+          {
+            "region": "center_pink_branches",
+            "x": 0.84,
+            "y": 0.14,
+            "w": 0.24,
+            "motion": "drift"
+          },
+          {
+            "region": "left_yellow_branches",
+            "x": 0.14,
+            "y": 0.2,
+            "w": 0.2,
+            "motion": "sway"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 95.496,
-      "duration": 22.884,
+      "view_to": [
+        120,
+        910,
+        840,
+        924,
+        10,
+        -1.8
+      ],
+      "frame": "polaroid",
+      "text_box": {
+        "x": 56,
+        "y": 120,
+        "w": 968,
+        "anchor": "top",
+        "maxh": 750
+      },
+      "layout": "inset_bottom",
+      "start": 96.864,
+      "duration": 22.62,
       "audio": "audio/t1/s05.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 21.384
+      "audio_dur": 21.12
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        323,
-        161,
-        639,
-        1135
+        427,
+        137,
+        668,
+        1187
       ],
       "cam_to": [
-        250,
-        113,
-        697,
-        1239
+        146,
+        173,
+        641,
+        1140
       ],
       "text": "總是有事情的時候要幫助他們。我能夠坐下來和他一同商量，他能夠尋我好像尋朋友似的。在家庭裏，父母要作到一個地步，能夠作兒女的朋友，這一個父母就沒有錯，就能作得好。",
-      "text_pos": "top",
-      "sprites": [
-        {
-          "region": "left_yellow_branches",
-          "x": 0.14,
-          "y": 0.68,
-          "w": 0.22,
-          "motion": "sway"
-        },
-        {
-          "region": "right_yellow_branches",
-          "x": 0.86,
-          "y": 0.7,
-          "w": 0.22,
-          "motion": "float"
-        }
+      "text_pos": "bottom",
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          400,
+          200,
+          792,
+          1408
+        ],
+        "cam_to": [
+          310,
+          140,
+          864,
+          1536
+        ],
+        "text_pos": "top",
+        "sprites": [
+          {
+            "region": "left_yellow_branches",
+            "x": 0.14,
+            "y": 0.68,
+            "w": 0.22,
+            "motion": "sway"
+          },
+          {
+            "region": "right_yellow_branches",
+            "x": 0.86,
+            "y": 0.7,
+            "w": 0.22,
+            "motion": "float"
+          }
+        ]
+      },
+      "layout": "pan",
+      "view_from": [
+        120,
+        910,
+        840,
+        924,
+        10,
+        -1.8
       ],
-      "start": 118.38,
-      "duration": 21.684,
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 119.484,
+      "duration": 21.756,
       "audio": "audio/t1/s06.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 20.184
+      "audio_dur": 20.256
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        298,
-        540,
-        479,
-        852
+        340,
+        715,
+        501,
+        480
       ],
       "cam_to": [
-        367,
-        597,
-        392,
-        697
+        220,
+        677,
+        581,
+        556
       ],
       "text": "所以，從兒女小的時候起你們就得學。我頂直對你們說，你的兒女和你多親近，和你多接近，就看你頭二十年怎樣對待他。頭二十年他若不親近你，到了三十歲、四十歲，他不可能會親近你。",
       "text_pos": "bottom",
-      "sprites": [
-        {
-          "region": "center_pink_branches",
-          "x": 0.84,
-          "y": 0.14,
-          "w": 0.24,
-          "motion": "sway"
-        },
-        {
-          "region": "left_yellow_branches",
-          "x": 0.14,
-          "y": 0.18,
-          "w": 0.2,
-          "motion": "float"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          370,
+          670,
+          594,
+          1056
+        ],
+        "cam_to": [
+          455,
+          740,
+          486,
+          864
+        ],
+        "text_pos": "bottom",
+        "sprites": [
+          {
+            "region": "center_pink_branches",
+            "x": 0.84,
+            "y": 0.14,
+            "w": 0.24,
+            "motion": "sway"
+          },
+          {
+            "region": "left_yellow_branches",
+            "x": 0.14,
+            "y": 0.18,
+            "w": 0.2,
+            "motion": "float"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 140.064,
-      "duration": 23.484,
+      "view_to": [
+        56,
+        110,
+        968,
+        928,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 786
+      },
+      "layout": "split_top",
+      "start": 141.24,
+      "duration": 23.244,
       "audio": "audio/t1/s07.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 21.984
+      "audio_dur": 21.744
     },
     {
       "type": "text",
@@ -487,28 +770,61 @@
         1239
       ],
       "text": "他離開你要越過越遠。你們必須要作到，孩子有難處的時候，第一個是來告訴你，第一個是來尋你，你能夠作到一個可信的地步。這樣，這一個家庭的難處就相當少，能過去。",
-      "text_pos": "top-right",
-      "sprites": [
-        {
-          "region": "left_yellow_branches",
-          "x": 0.14,
-          "y": 0.66,
-          "w": 0.22,
-          "motion": "drift"
-        },
-        {
-          "region": "right_plants",
-          "x": 0.85,
-          "y": 0.82,
-          "w": 0.22,
-          "motion": "sway"
-        }
+      "text_pos": "bottom",
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          420,
+          196,
+          792,
+          1408
+        ],
+        "cam_to": [
+          310,
+          140,
+          864,
+          1536
+        ],
+        "text_pos": "top-right",
+        "sprites": [
+          {
+            "region": "left_yellow_branches",
+            "x": 0.14,
+            "y": 0.66,
+            "w": 0.22,
+            "motion": "drift"
+          },
+          {
+            "region": "right_plants",
+            "x": 0.85,
+            "y": 0.82,
+            "w": 0.22,
+            "motion": "sway"
+          }
+        ]
+      },
+      "layout": "full",
+      "view_from": [
+        56,
+        110,
+        968,
+        928,
+        44,
+        0
       ],
-      "start": 163.548,
-      "duration": 20.532,
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 164.484,
+      "duration": 20.58,
       "audio": "audio/t1/s08.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 19.032
+      "audio_dur": 19.08
     },
     {
       "type": "verse",
@@ -551,45 +867,103 @@
         }
       ],
       "orig_text_pos": "bottom-left",
-      "start": 184.08,
-      "duration": 17.34,
+      "r2_orig": {
+        "cam_from": [
+          1394,
+          0,
+          983,
+          1748
+        ],
+        "cam_to": [
+          1394,
+          0,
+          983,
+          1748
+        ],
+        "text_pos": "top",
+        "sprites": []
+      },
+      "layout": "full",
+      "start": 185.064,
+      "duration": 17.748,
       "audio": "audio/t1/s09.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 15.84
+      "audio_dur": 16.248
     },
     {
       "type": "prayer",
       "img": "front",
       "cam_from": [
-        355,
-        581,
-        414,
-        735
+        166,
+        668,
+        681,
+        571
       ],
       "cam_to": [
-        306,
-        532,
-        479,
-        852
+        307,
+        707,
+        587,
+        492
       ],
       "text": "主耶穌，謝謝你把孩子賜給我們，使我們的家能在你裏面享受甜美的親子關係。求你保守我們作父母的，不惹兒女的氣，常常親近他們、幫助他們；也使孩子們學習凡事順從父母，在你裏面成為可喜悅的。主耶穌，願你作我們全家的中心，感謝主！",
       "text_pos": "bottom-left",
-      "sprites": [
-        {
-          "region": "center_pink_branches",
-          "x": 0.84,
-          "y": 0.15,
-          "w": 0.24,
-          "motion": "sway"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          440,
+          720,
+          513,
+          912
+        ],
+        "cam_to": [
+          380,
+          660,
+          594,
+          1056
+        ],
+        "text_pos": "bottom-left",
+        "sprites": [
+          {
+            "region": "center_pink_branches",
+            "x": 0.84,
+            "y": 0.15,
+            "w": 0.24,
+            "motion": "sway"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 201.42,
-      "duration": 28.764,
+      "view_to": [
+        120,
+        110,
+        840,
+        704,
+        10,
+        -1.4
+      ],
+      "frame": "polaroid",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 1010
+      },
+      "layout": "prayer",
+      "start": 202.812,
+      "duration": 29.292,
       "audio": "audio/t1/s10.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 27.264
+      "audio_dur": 27.792
     }
   ],
-  "total": 231.184,
+  "total": 233.104,
   "bgm": "audio/bgm.mp3"
 }

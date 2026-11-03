@@ -237,6 +237,20 @@
         755,
         1342
       ],
+      "r2_orig": {
+        "cam_from": [
+          152,
+          4,
+          981,
+          1744
+        ],
+        "cam_to": [
+          196,
+          60,
+          936,
+          1664
+        ]
+      },
       "start": 0.0,
       "duration": 3.0,
       "audio": null,
@@ -247,40 +261,81 @@
       "type": "text",
       "img": "front",
       "cam_from": [
-        226,
-        665,
-        406,
-        723
+        239,
+        719,
+        484,
+        512
       ],
       "cam_to": [
-        194,
-        458,
-        523,
-        929
+        123,
+        677,
+        561,
+        594
       ],
       "text": "曾有人說：『父母留給孩子的東西—第一聰明的留品格，第二聰明的留知識，最不聰明的留財富。』在孩子成長的過程中，我們是否已留下最重要的東西給他？",
       "text_pos": "top-right",
-      "sprites": [
-        {
-          "region": "flower_in_bottle_right",
-          "x": 0.86,
-          "y": 0.5,
-          "w": 0.16,
-          "motion": "sway"
-        },
-        {
-          "region": "top_center_white_bottle",
-          "x": 0.14,
-          "y": 0.5,
-          "w": 0.18,
-          "motion": "float"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          280,
+          824,
+          504,
+          896
+        ],
+        "cam_to": [
+          240,
+          568,
+          648,
+          1152
+        ],
+        "text_pos": "top-right",
+        "sprites": [
+          {
+            "region": "flower_in_bottle_right",
+            "x": 0.86,
+            "y": 0.5,
+            "w": 0.16,
+            "motion": "sway"
+          },
+          {
+            "region": "top_center_white_bottle",
+            "x": 0.14,
+            "y": 0.5,
+            "w": 0.18,
+            "motion": "float"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
+      "view_to": [
+        56,
+        110,
+        968,
+        1024,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 690
+      },
+      "layout": "split_top",
       "start": 3.0,
-      "duration": 18.156,
+      "duration": 18.3,
       "audio": "audio/t4/s01.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 16.656
+      "audio_dur": 16.8
     },
     {
       "type": "text",
@@ -298,7 +353,7 @@
         723
       ],
       "text": "翻閱今天的新聞報導，其中不乏許多名校學生自殘、情殺，許多高科技智慧型犯罪，許多孩子被全心栽培長大，卻翻臉嫌棄父母長輩…令人不勝唏噓的社會事件。到底我們在孩子身上注重的是什麼呢？什麼是我們留給孩子最上好的禮物？",
-      "text_pos": "top-left",
+      "text_pos": "top",
       "sprites": [
         {
           "region": "green_vase_flowers_left",
@@ -308,160 +363,357 @@
           "motion": "sway"
         }
       ],
-      "start": 21.156,
-      "duration": 27.66,
+      "r2_orig": {
+        "cam_from": [
+          260,
+          632,
+          612,
+          1088
+        ],
+        "cam_to": [
+          430,
+          824,
+          504,
+          896
+        ],
+        "text_pos": "top-left",
+        "sprites": [
+          {
+            "region": "green_vase_flowers_left",
+            "x": 0.44,
+            "y": 0.86,
+            "w": 0.16,
+            "motion": "sway"
+          }
+        ]
+      },
+      "layout": "full",
+      "view_from": [
+        56,
+        110,
+        968,
+        1024,
+        44,
+        0
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 21.3,
+      "duration": 28.452,
       "audio": "audio/t4/s02.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 26.16
+      "audio_dur": 26.952
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        290,
-        613,
-        435,
-        774
+        141,
+        662,
+        585,
+        560
       ],
       "cam_to": [
-        161,
-        368,
-        581,
-        1032
+        188,
+        617,
+        677,
+        650
       ],
       "text": "聖經將人比作一個器皿，一個器皿的價值，就在於它的質地與樣式；越貴重的器皿，自然能盛裝越高貴的東西。我們的孩子將來能盛裝什麼有價值的事物，跟他的人格、品格有絕大的關係。",
       "text_pos": "top",
-      "sprites": [
-        {
-          "region": "top_center_white_bottle",
-          "x": 0.15,
-          "y": 0.5,
-          "w": 0.16,
-          "motion": "float"
-        },
-        {
-          "region": "green_round_bottle",
-          "x": 0.85,
-          "y": 0.48,
-          "w": 0.16,
-          "motion": "rise"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          360,
+          760,
+          540,
+          960
+        ],
+        "cam_to": [
+          200,
+          456,
+          720,
+          1280
+        ],
+        "text_pos": "top",
+        "sprites": [
+          {
+            "region": "top_center_white_bottle",
+            "x": 0.15,
+            "y": 0.5,
+            "w": 0.16,
+            "motion": "float"
+          },
+          {
+            "region": "green_round_bottle",
+            "x": 0.85,
+            "y": 0.48,
+            "w": 0.16,
+            "motion": "rise"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 48.816,
-      "duration": 21.516,
+      "view_to": [
+        56,
+        110,
+        968,
+        928,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 786
+      },
+      "layout": "split_top",
+      "start": 49.752,
+      "duration": 21.612,
       "audio": "audio/t4/s03.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 20.016
+      "audio_dur": 20.112
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        274,
-        561,
-        465,
-        826
-      ],
-      "cam_to": [
-        177,
-        665,
-        406,
-        723
-      ],
-      "text": "一件紡織品，無論是棉或絲綢的，染色時都要放在染缸裏。同樣的染料，染在最粗、最差的布料上，其結果並不漂亮；但染在中國最好的絲綢上，結果是又漂亮又光鮮。染料沒有不同，但表顯在染色後的結果，完全與紡織品的質料有關。",
-      "text_pos": "top-right",
-      "sprites": [
-        {
-          "region": "flower_in_bottle_right",
-          "x": 0.14,
-          "y": 0.54,
-          "w": 0.16,
-          "motion": "drift"
-        }
-      ],
-      "start": 70.332,
-      "duration": 27.756,
-      "audio": "audio/t4/s04.mp3",
-      "audio_offset": 0.5,
-      "audio_dur": 26.256
-    },
-    {
-      "type": "text",
-      "img": "front",
-      "cam_from": [
-        371,
-        665,
-        406,
-        723
-      ],
-      "cam_to": [
-        250,
-        510,
-        494,
-        877
-      ],
-      "text": "今天聖靈就像染料；我們眾人都在這一位靈裏，但是出來的表顯卻有所不同。這個不同，不在於我們所接受的聖靈，因為聖靈是同一位；這個不同乃在於我們這些被染的人，這關乎到我們性格的問題。",
-      "text_pos": "top-left",
-      "sprites": [
-        {
-          "region": "top_center_white_bottle",
-          "x": 0.16,
-          "y": 0.52,
-          "w": 0.16,
-          "motion": "float"
-        },
-        {
-          "region": "green_vase_flowers_left",
-          "x": 0.46,
-          "y": 0.86,
-          "w": 0.15,
-          "motion": "sway"
-        }
-      ],
-      "start": 98.088,
-      "duration": 22.596,
-      "audio": "audio/t4/s05.mp3",
-      "audio_offset": 0.5,
-      "audio_dur": 21.096
-    },
-    {
-      "type": "text",
-      "img": "front",
-      "cam_from": [
-        185,
-        458,
-        523,
-        929
-      ],
-      "cam_to": [
-        306,
+        317,
         613,
         435,
         774
       ],
+      "cam_to": [
+        135,
+        636,
+        418,
+        744
+      ],
+      "text": "一件紡織品，無論是棉或絲綢的，染色時都要放在染缸裏。同樣的染料，染在最粗、最差的布料上，其結果並不漂亮；但染在中國最好的絲綢上，結果是又漂亮又光鮮。染料沒有不同，但表顯在染色後的結果，完全與紡織品的質料有關。",
+      "text_pos": "top",
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          340,
+          696,
+          576,
+          1024
+        ],
+        "cam_to": [
+          220,
+          824,
+          504,
+          896
+        ],
+        "text_pos": "top-right",
+        "sprites": [
+          {
+            "region": "flower_in_bottle_right",
+            "x": 0.14,
+            "y": 0.54,
+            "w": 0.16,
+            "motion": "drift"
+          }
+        ]
+      },
+      "layout": "pan",
+      "view_from": [
+        56,
+        110,
+        968,
+        928,
+        44,
+        0
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 71.364,
+      "duration": 28.524,
+      "audio": "audio/t4/s04.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 27.024
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        347,
+        739,
+        449,
+        496
+      ],
+      "cam_to": [
+        239,
+        699,
+        521,
+        575
+      ],
+      "text": "今天聖靈就像染料；我們眾人都在這一位靈裏，但是出來的表顯卻有所不同。這個不同，不在於我們所接受的聖靈，因為聖靈是同一位；這個不同乃在於我們這些被染的人，這關乎到我們性格的問題。",
+      "text_pos": "top-left",
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          460,
+          824,
+          504,
+          896
+        ],
+        "cam_to": [
+          310,
+          632,
+          612,
+          1088
+        ],
+        "text_pos": "top-left",
+        "sprites": [
+          {
+            "region": "top_center_white_bottle",
+            "x": 0.16,
+            "y": 0.52,
+            "w": 0.16,
+            "motion": "float"
+          },
+          {
+            "region": "green_vase_flowers_left",
+            "x": 0.46,
+            "y": 0.86,
+            "w": 0.15,
+            "motion": "sway"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "view_to": [
+        120,
+        110,
+        840,
+        928,
+        10,
+        -1.8
+      ],
+      "frame": "polaroid",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 786
+      },
+      "layout": "inset_top",
+      "start": 99.888,
+      "duration": 23.22,
+      "audio": "audio/t4/s05.mp3",
+      "audio_offset": 0.5,
+      "audio_dur": 21.72
+    },
+    {
+      "type": "text",
+      "img": "front",
+      "cam_from": [
+        235,
+        655,
+        581,
+        612
+      ],
+      "cam_to": [
+        195,
+        698,
+        501,
+        528
+      ],
       "text": "一個人有什麼用處，能接受什麼託付，承當什麼責任，作什麼事情，百分之百是根據於他的性格。木匠是根據木頭的質料來定規它的用處，懶惰的性格把一個人廢掉了。",
       "text_pos": "top",
-      "sprites": [
-        {
-          "region": "flower_in_bottle_right",
-          "x": 0.15,
-          "y": 0.5,
-          "w": 0.16,
-          "motion": "rise"
-        },
-        {
-          "region": "green_round_bottle",
-          "x": 0.85,
-          "y": 0.48,
-          "w": 0.18,
-          "motion": "zoom"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          230,
+          568,
+          648,
+          1152
+        ],
+        "cam_to": [
+          380,
+          760,
+          540,
+          960
+        ],
+        "text_pos": "top",
+        "sprites": [
+          {
+            "region": "flower_in_bottle_right",
+            "x": 0.15,
+            "y": 0.5,
+            "w": 0.16,
+            "motion": "rise"
+          },
+          {
+            "region": "green_round_bottle",
+            "x": 0.85,
+            "y": 0.48,
+            "w": 0.18,
+            "motion": "zoom"
+          }
+        ]
+      },
+      "view_from": [
+        120,
+        110,
+        840,
+        928,
+        10,
+        -1.8
       ],
-      "start": 120.684,
-      "duration": 19.428,
+      "view_to": [
+        56,
+        844,
+        968,
+        1020,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 120,
+        "w": 968,
+        "anchor": "top",
+        "maxh": 684
+      },
+      "layout": "split_bottom",
+      "start": 123.108,
+      "duration": 19.572,
       "audio": "audio/t4/s06.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 17.928
+      "audio_dur": 18.072
     },
     {
       "type": "text",
@@ -479,7 +731,7 @@
         929
       ],
       "text": "性格的組成是生性加上習性。性情是天生的，性格是養成的。一個人的性格，生性只有百分之三十，習性卻有百分之七十。所以孩子必須注意性格的養成。",
-      "text_pos": "top-right",
+      "text_pos": "top",
       "sprites": [
         {
           "region": "green_vase_flowers_left",
@@ -496,11 +748,59 @@
           "motion": "drift"
         }
       ],
-      "start": 140.112,
-      "duration": 20.652,
+      "r2_orig": {
+        "cam_from": [
+          250,
+          824,
+          504,
+          896
+        ],
+        "cam_to": [
+          210,
+          568,
+          648,
+          1152
+        ],
+        "text_pos": "top-right",
+        "sprites": [
+          {
+            "region": "green_vase_flowers_left",
+            "x": 0.85,
+            "y": 0.48,
+            "w": 0.16,
+            "motion": "sway"
+          },
+          {
+            "region": "top_center_white_bottle",
+            "x": 0.15,
+            "y": 0.5,
+            "w": 0.18,
+            "motion": "drift"
+          }
+        ]
+      },
+      "layout": "full",
+      "view_from": [
+        56,
+        844,
+        968,
+        1020,
+        44,
+        0
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 142.68,
+      "duration": 20.148,
       "audio": "audio/t4/s07.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 19.152
+      "audio_dur": 18.648
     },
     {
       "type": "verse",
@@ -535,37 +835,95 @@
       "orig_sprites": [],
       "orig_text_pos": "top-left",
       "sprites": [],
-      "start": 160.764,
-      "duration": 17.052,
+      "r2_orig": {
+        "cam_from": [
+          1452,
+          0,
+          983,
+          1748
+        ],
+        "cam_to": [
+          1502,
+          134,
+          884,
+          1572
+        ],
+        "text_pos": "top",
+        "sprites": []
+      },
+      "layout": "full",
+      "start": 162.828,
+      "duration": 17.916,
       "audio": "audio/t4/s08.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 15.552
+      "audio_dur": 16.416
     },
     {
       "type": "prayer",
       "img": "front",
       "cam_from": [
-        185,
-        452,
-        537,
-        955
+        53,
+        506,
+        710,
+        680
       ],
       "cam_to": [
-        129,
-        145,
-        697,
-        1239
+        110,
+        452,
+        824,
+        789
       ],
       "text": "主耶穌，謝謝你，你的心願是要我們的孩子成為貴重的器皿。求你潔淨我們全家，使我們脫離卑賤的事物，分別為聖，合乎主人使用。主啊，願我們先作孩子的榜樣，把優良的品格留給他們，預備行各樣的善事，感謝主！",
       "text_pos": "top-left",
       "sprites": [],
-      "start": 177.816,
-      "duration": 25.884,
+      "r2_orig": {
+        "cam_from": [
+          230,
+          560,
+          666,
+          1184
+        ],
+        "cam_to": [
+          160,
+          180,
+          864,
+          1536
+        ],
+        "text_pos": "top-left",
+        "sprites": []
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "view_to": [
+        120,
+        110,
+        840,
+        804,
+        10,
+        -1.4
+      ],
+      "frame": "polaroid",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 910
+      },
+      "layout": "prayer",
+      "start": 180.744,
+      "duration": 26.052,
       "audio": "audio/t4/s09.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 24.384
+      "audio_dur": 24.552
     }
   ],
-  "total": 204.7,
+  "total": 207.796,
   "bgm": "audio/bgm.mp3"
 }

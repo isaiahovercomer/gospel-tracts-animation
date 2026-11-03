@@ -3,7 +3,9 @@
 
   var STAGE_W = 1080;
   var STAGE_H = 1920;
-  var CROSSFADE_SEC = 0.8;
+  var CROSSFADE_SEC = 1.1;
+  var VIEW_MORPH_SEC = 2.0;
+  var CONTROLS_H = 56;
   var CHAR_FADE_SEC = 0.25;
 
   var FALLBACK_META = {
@@ -56,6 +58,14 @@
   var playBtnLabel = document.getElementById('play-btn-label');
   var replayBtn = document.getElementById('replay-btn');
   var endTitleEl = document.getElementById('end-title');
+  var controlsEl = document.getElementById('controls');
+  var ctrlPlayBtn = document.getElementById('ctrl-play');
+  var ctrlTrack = document.getElementById('ctrl-track');
+  var ctrlFill = document.getElementById('ctrl-fill');
+  var ctrlThumb = document.getElementById('ctrl-thumb');
+  var ctrlCur = document.getElementById('ctrl-cur');
+  var ctrlTot = document.getElementById('ctrl-tot');
+  var isDragging = false;
 
   var sceneModels = [];
   var totalDuration = 5.0;
@@ -80,12 +90,16 @@
   function updateStageScale() {
     var vw = window.innerWidth || STAGE_W;
     var vh = window.innerHeight || STAGE_H;
+    if (!isRenderMode) vh = Math.max(200, vh - CONTROLS_H);
     var scale = Math.min(vw / STAGE_W, vh / STAGE_H);
     var scaledW = Math.round(STAGE_W * scale);
     var scaledH = Math.round(STAGE_H * scale);
     if (stageViewport) {
       stageViewport.style.width = scaledW + 'px';
       stageViewport.style.height = scaledH + 'px';
+    }
+    if (controlsEl) {
+      controlsEl.style.width = Math.max(300, scaledW) + 'px';
     }
     if (stageEl) {
       stageEl.style.transform = 'scale(' + scale + ')';
@@ -122,7 +136,8 @@
       if (document.fonts) {
         fontPromise = Promise.all([
           document.fonts.ready,
-          document.fonts.load ? document.fonts.load('56px "WenKai"') : Promise.resolve()
+          document.fonts.load ? document.fonts.load('56px "WenKai"') : Promise.resolve(),
+          document.fonts.load ? document.fonts.load('60px "PrayerHand"') : Promise.resolve()
         ]).catch(function () {});
       }
     } catch (_) {}
@@ -408,6 +423,18 @@
     return allowed[pos] || 'pos-bottom';
   }
 
+  // view rect in stage px: [x, y, w, h, radius, rotateDeg]
+  function normalizeView(v) {
+    if (!Array.isArray(v) || v.length < 4) return null;
+    var out = [];
+    for (var i = 0; i < 6; i++) {
+      var n = Number(v[i]);
+      out.push(isFinite(n) ? n : 0);
+    }
+    if (out[2] <= 0 || out[3] <= 0) return null;
+    return out;
+  }
+
   function buildScenes(rawData, loadedImages) {
     var meta = FALLBACK_META[tractId] || FALLBACK_META[1];
     var data = rawData && typeof rawData === 'object' ? rawData : {};
@@ -507,7 +534,18 @@
         camLayer.appendChild(bgImg);
       }
 
-      sceneEl.appendChild(camLayer);
+      var viewFrom = normalizeView(sc.view_from || sc.view_to);
+      var viewTo = normalizeView(sc.view_to || sc.view_from);
+      var viewEl = document.createElement('div');
+      viewEl.className = 'scene-view' + (sc.frame ? ' frame-' + String(sc.frame).replace(/[^a-z]/g, '') : '');
+      if (viewTo && imgInfo && imgInfo.src) {
+        var backdrop = document.createElement('div');
+        backdrop.className = 'scene-backdrop';
+        backdrop.style.backgroundImage = 'url("' + imgInfo.src + '")';
+        sceneEl.appendChild(backdrop);
+      }
+      viewEl.appendChild(camLayer);
+      sceneEl.appendChild(viewEl);
 
       // Build Sprites
       var spritesLayer = document.createElement('div');
@@ -579,7 +617,17 @@
 
       if (type !== 'cover' && bodyText) {
         panelEl = document.createElement('div');
-        panelEl.className = 'scene-panel ' + normalizeTextPos(sc.text_pos);
+        var tb = sc.text_box && typeof sc.text_box === 'object' ? sc.text_box : null;
+        if (tb && isFinite(tb.x) && isFinite(tb.y) && isFinite(tb.w)) {
+          panelEl.className = 'scene-panel pos-custom' + (tb.style ? ' panel-' + String(tb.style).replace(/[^a-z]/g, '') : '');
+          panelEl.style.left = Number(tb.x) + 'px';
+          panelEl.style.width = Number(tb.w) + 'px';
+          if (tb.anchor === 'bottom') panelEl.style.bottom = Number(tb.y) + 'px';
+          else panelEl.style.top = Number(tb.y) + 'px';
+        } else {
+          tb = null;
+          panelEl.className = 'scene-panel ' + normalizeTextPos(sc.text_pos);
+        }
 
         panelInner = document.createElement('div');
         panelInner.className = 'panel-inner';
@@ -675,9 +723,10 @@
         sceneEl.style.display = 'block';
         sceneEl.style.visibility = 'hidden';
 
-        var fontSize = type === 'verse' ? 58 : 56;
+        var fontSize = type === 'verse' ? 58 : (type === 'prayer' ? 60 : 56);
         var lineHeight = 1.72;
         var maxInnerHeight = 920;
+        if (tb && isFinite(tb.maxh) && tb.maxh > 200) maxInnerHeight = Number(tb.maxh) - 92;
 
         layoutPanelLines(panelInner, paragraphs, refWrap, penTipEl, fontSize, lineHeight);
 
@@ -711,7 +760,12 @@
         type: type,
         el: sceneEl,
         camLayer: camLayer,
+        viewEl: viewEl,
+        viewFrom: viewFrom,
+        viewTo: viewTo,
+        lastViewKey: '',
         panelEl: panelEl,
+        panelSlide: tb ? (tb.anchor === 'bottom' ? 1 : -1) : 0,
         penTipEl: penTipEl,
         sprites: spriteModels,
         chars: charModels,
@@ -811,9 +865,34 @@
     var cw = Math.max(1, cf[2] + (ct[2] - cf[2]) * camEased);
     var ch = Math.max(1, cf[3] + (ct[3] - cf[3]) * camEased);
 
-    var s = Math.max(STAGE_W / cw, STAGE_H / ch);
-    var tx = (STAGE_W - cw * s) / 2 - cx * s;
-    var ty = (STAGE_H - ch * s) / 2 - cy * s;
+    var vx = 0, vy = 0, vw = STAGE_W, vh = STAGE_H, vr = 0, vrot = 0;
+    if (scene.viewTo) {
+      var vp = easeInOutSine(clamp((t - camSpanStart) / VIEW_MORPH_SEC, 0, 1));
+      if (prefersReducedMotion) vp = 1;
+      var a = scene.viewFrom || scene.viewTo;
+      var b = scene.viewTo;
+      vx = a[0] + (b[0] - a[0]) * vp;
+      vy = a[1] + (b[1] - a[1]) * vp;
+      vw = a[2] + (b[2] - a[2]) * vp;
+      vh = a[3] + (b[3] - a[3]) * vp;
+      vr = a[4] + (b[4] - a[4]) * vp;
+      vrot = a[5] + (b[5] - a[5]) * vp;
+    }
+    var viewKey = vx.toFixed(1) + ',' + vy.toFixed(1) + ',' + vw.toFixed(1) + ',' + vh.toFixed(1) + ',' + vr.toFixed(1) + ',' + vrot.toFixed(2);
+    if (viewKey !== scene.lastViewKey) {
+      scene.lastViewKey = viewKey;
+      var vs = scene.viewEl.style;
+      vs.left = vx.toFixed(1) + 'px';
+      vs.top = vy.toFixed(1) + 'px';
+      vs.width = vw.toFixed(1) + 'px';
+      vs.height = vh.toFixed(1) + 'px';
+      vs.borderRadius = vr.toFixed(1) + 'px';
+      vs.transform = vrot ? 'rotate(' + vrot.toFixed(2) + 'deg)' : 'none';
+    }
+
+    var s = Math.max(vw / cw, vh / ch);
+    var tx = (vw - cw * s) / 2 - cx * s;
+    var ty = (vh - ch * s) / 2 - cy * s;
     scene.camLayer.style.transform =
       'translate3d(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px,0) scale(' + s.toFixed(5) + ')';
 
@@ -830,8 +909,13 @@
 
     // Text panel & handwriting characters
     if (scene.panelEl) {
-      var panelFade = clamp((localT + 0.25) / 0.45, 0, 1);
+      var panelFade = clamp((localT + 0.35) / 0.6, 0, 1);
       scene.panelEl.style.opacity = panelFade.toFixed(3);
+      if (scene.panelSlide) {
+        var pe = 1 - (1 - panelFade) * (1 - panelFade);
+        var slide = prefersReducedMotion ? 0 : (1 - pe) * 36 * scene.panelSlide;
+        scene.panelEl.style.transform = slide ? 'translate3d(0,' + slide.toFixed(1) + 'px,0)' : 'none';
+      }
 
       var chars = scene.chars;
       var activePenChar = null;
@@ -912,6 +996,35 @@
       whiteOpacity = (t - (totalDuration - 1.0)) / 1.0;
     }
     whiteOverlay.style.opacity = clamp(whiteOpacity, 0, 1).toFixed(4);
+    updateControls(t);
+  }
+
+  function fmtTime(sec) {
+    sec = Math.max(0, Math.floor(sec + 0.0001));
+    var m = Math.floor(sec / 60);
+    var r = sec % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  var lastCtrlKey = '';
+  function updateControls(t) {
+    if (!controlsEl || isRenderMode) return;
+    var pct = totalDuration > 0 ? clamp(t / totalDuration, 0, 1) * 100 : 0;
+    var key = pct.toFixed(2) + '|' + playState;
+    if (key === lastCtrlKey) return;
+    lastCtrlKey = key;
+    if (ctrlFill) ctrlFill.style.width = pct.toFixed(3) + '%';
+    if (ctrlThumb) ctrlThumb.style.left = pct.toFixed(3) + '%';
+    if (ctrlCur) ctrlCur.textContent = fmtTime(t);
+    if (ctrlTrack) {
+      ctrlTrack.setAttribute('aria-valuenow', String(Math.round(t)));
+      ctrlTrack.setAttribute('aria-valuetext', fmtTime(t) + ' / ' + fmtTime(totalDuration));
+    }
+    if (ctrlPlayBtn) {
+      var playing = playState === 'playing';
+      ctrlPlayBtn.classList.toggle('is-playing', playing);
+      ctrlPlayBtn.setAttribute('aria-label', playing ? '暫停' : '播放');
+    }
   }
 
   window.render = render;
@@ -1003,6 +1116,8 @@
       pauseAllAudio();
       playState = 'ended';
       rafId = null;
+      pausedAtTime = totalDuration;
+      updateControls(totalDuration);
       if (endOverlay) endOverlay.classList.remove('hidden');
       return;
     }
@@ -1027,7 +1142,57 @@
     rafId = requestAnimationFrame(tick);
   }
 
-  function pausePlayback() {
+  function getPlayTime() {
+    if (playState === 'playing') {
+      return clamp(pausedAtTime + (performance.now() - playStartPerf) / 1000, 0, totalDuration);
+    }
+    if (playState === 'ended') return totalDuration;
+    return pausedAtTime;
+  }
+
+  // Jump every timeline (visuals, narration, BGM) to time t.
+  function seekTo(t, resume) {
+    if (isRenderMode || !isReady) return;
+    t = clamp(Number(t) || 0, 0, Math.max(0, totalDuration - 0.05));
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    pauseAllAudio();
+    for (var i = 0; i < sceneModels.length; i++) {
+      var sc = sceneModels[i];
+      if (!sc.audioEl) continue;
+      var narStart = sc.start + sc.audioOffset;
+      var target = (t >= narStart && t < narStart + sc.audioDur) ? (t - narStart) : 0;
+      try { sc.audioEl.currentTime = target; } catch (_) {}
+    }
+    if (bgmAudio) {
+      var bd = bgmAudio.duration;
+      try { bgmAudio.currentTime = (bd && isFinite(bd) && bd > 0) ? (t % bd) : t; } catch (_) {}
+    }
+    pausedAtTime = t;
+    playStartPerf = performance.now();
+    if (playState !== 'playing') playState = 'paused';
+    if (startOverlay) startOverlay.classList.add('hidden');
+    if (endOverlay) endOverlay.classList.add('hidden');
+    if (playBtnLabel) playBtnLabel.textContent = '繼續';
+    render(t);
+    if (resume) {
+      playState = 'paused';
+      startOrResumePlayback();
+    } else if (playState === 'playing') {
+      playState = 'paused';
+      updateControls(t);
+    }
+  }
+  window.__seekTo = seekTo;
+  window.__audioState = function () {
+    var r = sceneModels.filter(function (m) { return m.audioEl && !m.audioEl.paused; })
+      .map(function (m) { return [m.index, +m.audioEl.currentTime.toFixed(1), +(m.start + m.audioOffset).toFixed(1)]; });
+    return { narr: r, bgm: bgmAudio ? [!bgmAudio.paused, +bgmAudio.currentTime.toFixed(1)] : null };
+  };
+
+  function pausePlayback(showOverlay) {
     if (playState !== 'playing') return;
     var now = performance.now();
     pausedAtTime = clamp(pausedAtTime + (now - playStartPerf) / 1000, 0, totalDuration);
@@ -1038,7 +1203,96 @@
     }
     pauseAllAudio();
     if (playBtnLabel) playBtnLabel.textContent = '繼續';
-    if (startOverlay) startOverlay.classList.remove('hidden');
+    if (startOverlay && showOverlay !== false) startOverlay.classList.remove('hidden');
+    updateControls(pausedAtTime);
+  }
+
+  function togglePlayback() {
+    if (playState === 'playing') pausePlayback(false);
+    else startOrResumePlayback();
+  }
+
+  function trackTimeFromEvent(e) {
+    var rect = ctrlTrack.getBoundingClientRect();
+    var x = (e.clientX !== undefined ? e.clientX : 0) - rect.left;
+    return clamp(x / Math.max(1, rect.width), 0, 1) * totalDuration;
+  }
+
+  function setupControls() {
+    if (!controlsEl || isRenderMode) return;
+    if (ctrlTot) ctrlTot.textContent = fmtTime(totalDuration);
+    if (ctrlTrack) {
+      ctrlTrack.setAttribute('aria-valuemax', String(Math.round(totalDuration)));
+      var ticks = ctrlTrack.querySelector('.ctrl-ticks');
+      if (ticks) {
+        ticks.innerHTML = '';
+        for (var i = 1; i < sceneModels.length; i++) {
+          var tk = document.createElement('span');
+          tk.className = 'ctrl-tick' + (sceneModels[i].type === 'verse' || sceneModels[i].type === 'prayer' ? ' tick-key' : '');
+          tk.style.left = (sceneModels[i].start / totalDuration * 100).toFixed(3) + '%';
+          ticks.appendChild(tk);
+        }
+      }
+    }
+    updateControls(currentTime);
+  }
+
+  if (!isRenderMode && controlsEl) {
+    if (ctrlPlayBtn) {
+      ctrlPlayBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!isReady) return;
+        togglePlayback();
+      });
+    }
+    if (ctrlTrack) {
+      var wasPlaying = false;
+      var dragT = 0;
+      ctrlTrack.addEventListener('pointerdown', function (e) {
+        if (!isReady) return;
+        if (e.button !== undefined && e.button > 0) return;
+        e.preventDefault();
+        isDragging = true;
+        wasPlaying = playState === 'playing';
+        if (wasPlaying) pausePlayback(false);
+        try { ctrlTrack.setPointerCapture(e.pointerId); } catch (_) {}
+        controlsEl.classList.add('is-dragging');
+        dragT = trackTimeFromEvent(e);
+        if (startOverlay) startOverlay.classList.add('hidden');
+        if (endOverlay) endOverlay.classList.add('hidden');
+        render(dragT);
+      });
+      ctrlTrack.addEventListener('pointermove', function (e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        dragT = trackTimeFromEvent(e);
+        render(dragT);
+      });
+      var endDrag = function (e) {
+        if (!isDragging) return;
+        isDragging = false;
+        controlsEl.classList.remove('is-dragging');
+        if (e && e.clientX !== undefined && e.type === 'pointerup') dragT = trackTimeFromEvent(e);
+        seekTo(dragT, wasPlaying);
+      };
+      ctrlTrack.addEventListener('pointerup', endDrag);
+      ctrlTrack.addEventListener('pointercancel', endDrag);
+      ctrlTrack.addEventListener('keydown', function (e) {
+        if (!isReady) return;
+        var step = e.key === 'ArrowRight' ? 5 : (e.key === 'ArrowLeft' ? -5 : 0);
+        if (!step) return;
+        e.preventDefault();
+        seekTo(getPlayTime() + step, playState === 'playing');
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (!isReady) return;
+      if (e.target && e.target.closest && e.target.closest('input, textarea, a')) return;
+      if (e.key === ' ' || e.key === 'k') {
+        e.preventDefault();
+        togglePlayback();
+      }
+    });
   }
 
   if (!isRenderMode) {
@@ -1065,10 +1319,36 @@
       stageEl.addEventListener('click', function (e) {
         if (e.target && e.target.closest && e.target.closest('a, button')) return;
         if (playState === 'playing') {
-          pausePlayback();
+          pausePlayback(true);
         } else if (playState === 'paused') {
           startOrResumePlayback();
         }
+      });
+    }
+  }
+
+  function setupCard(data) {
+    var section = document.getElementById('card-section');
+    if (!section || isRenderMode) return;
+    var img = document.getElementById('card-img');
+    var dl = document.getElementById('card-download');
+    var src = 'img/card_t' + tractId + '.png';
+    var title = (data && data.title) || (FALLBACK_META[tractId] || {}).title || '';
+    if (img) {
+      img.src = src + '?v=r2';
+      var prayer = '';
+      (data.scenes || []).forEach(function (s) { if (s && s.type === 'prayer') prayer = s.text || ''; });
+      img.alt = '經文：' + ((data && data.verse) || '') + ' ' + ((data && data.verse_ref) || '') + '　禱告：' + prayer;
+    }
+    if (dl) {
+      dl.href = src;
+      dl.setAttribute('download', '圖文卡_' + tractId + '_' + title.replace(/[\\/:*?"<>|！—\s]/g, '') + '.png');
+    }
+    var toCard = document.getElementById('to-card-btn');
+    if (toCard) {
+      toCard.addEventListener('click', function (e) {
+        e.stopPropagation();
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
   }
@@ -1099,6 +1379,8 @@
           };
           buildScenes(data, loadedImages);
           isReady = true;
+          setupControls();
+          setupCard(data);
 
           if (isRenderMode) {
             render(0);

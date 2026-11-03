@@ -290,16 +290,35 @@ body.home-body {
    播放頁 (play.html) — 9:16 邏輯舞台 1080x1920 + Letterbox
    ========================================================= */
 body.play-body {
-  width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: radial-gradient(circle at 50% 35%, #fdf6f0 0%, var(--bg) 65%, #e5cfc4 100%);
+}
+
+.player-wrap {
   height: 100vh;
   height: 100dvh;
-  overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 50% 35%, #fdf6f0 0%, var(--bg) 65%, #e5cfc4 100%);
   user-select: none;
   -webkit-user-select: none;
+}
+
+body.render-mode {
+  overflow: hidden;
+}
+
+body.render-mode .player-wrap {
+  height: auto;
+}
+
+body.render-mode .controls,
+body.render-mode .card-section {
+  display: none !important;
 }
 
 #stage-viewport {
@@ -678,3 +697,340 @@ body.render-mode #ui-layer {
 .top-home-link:hover {
   transform: scale(1.04);
 }
+
+/* ===== Round 2: image windows / custom text boxes ===== */
+.scene-view {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.scene-view.frame-card {
+  box-shadow: 0 26px 60px rgba(58, 34, 22, 0.22), 0 0 0 10px rgba(255, 255, 255, 0.92);
+}
+
+.scene-view.frame-polaroid {
+  box-shadow: 0 30px 70px rgba(58, 34, 22, 0.26), 0 0 0 18px #fffdf8;
+}
+
+.scene-backdrop {
+  position: absolute;
+  inset: -60px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) saturate(1.15);
+  opacity: 0.42;
+  transform: scale(1.08);
+}
+
+.scene-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 250, 244, 0.25) 0%, rgba(255, 250, 244, 0.55) 100%);
+}
+
+.scene-panel.pos-custom {
+  right: auto;
+}
+
+.scene-panel.panel-soft {
+  background: rgba(255, 252, 248, 0.94);
+}
+
+/* 主觀禱告：手寫信紙 */
+@font-face {
+  font-family: 'PrayerHand';
+  src: url('../fonts/prayer.woff2') format('woff2');
+  font-display: swap;
+}
+
+.scene-prayer .scene-panel {
+  background: linear-gradient(170deg, #fffdf6 0%, #fff6e8 100%);
+  border-radius: 18px 44px 22px 40px;
+  box-shadow: 0 24px 60px rgba(58, 34, 22, 0.2), 0 2px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.scene-prayer .panel-inner {
+  font-family: 'PrayerHand', var(--font-main);
+  -webkit-text-stroke: 1.5px currentColor;
+  letter-spacing: 0.06em;
+  color: #4a2e22;
+}
+
+.scene-prayer .scene-panel::before {
+  content: '♡ 我的禱告';
+  position: absolute;
+  top: 14px;
+  right: 34px;
+  font-family: var(--font-main);
+  font-size: 30px;
+  color: var(--accent);
+  opacity: 0.75;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Controls bar ===== */
+.controls {
+  height: 56px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: rgba(255, 251, 247, 0.96);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 14px 30px rgba(45, 24, 14, 0.14);
+  font-family: var(--font-main);
+  color: var(--ink);
+  touch-action: none;
+}
+
+.ctrl-play {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(184, 55, 36, 0.3);
+}
+
+.ctrl-play svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.ctrl-play .ic-pause,
+.ctrl-play.is-playing .ic-play {
+  display: none;
+}
+
+.ctrl-play.is-playing .ic-pause {
+  display: block;
+}
+
+.ctrl-time {
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+  text-align: center;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  opacity: 0.8;
+}
+
+.ctrl-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 44px;
+  cursor: pointer;
+  touch-action: none;
+  outline: none;
+}
+
+.ctrl-rail,
+.ctrl-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 999px;
+}
+
+.ctrl-rail {
+  right: 0;
+  background: rgba(70, 44, 34, 0.14);
+}
+
+.ctrl-fill {
+  width: 0;
+  background: linear-gradient(90deg, #f0a080, var(--accent));
+}
+
+.ctrl-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ctrl-tick {
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 8px;
+  margin: -4px 0 0 -1.5px;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 2;
+}
+
+.ctrl-tick.tick-key {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(184, 55, 36, 0.5);
+}
+
+.ctrl-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  transition: transform 0.15s ease;
+}
+
+.controls.is-dragging .ctrl-thumb,
+.ctrl-track:focus-visible .ctrl-thumb {
+  transform: scale(1.3);
+}
+
+/* ===== 圖文卡 section ===== */
+.card-section {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2.4rem 1.1rem 3.5rem;
+  text-align: center;
+  font-family: var(--font-main);
+  color: var(--ink);
+}
+
+.card-heading {
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.card-hint {
+  font-size: 1rem;
+  opacity: 0.75;
+  margin-bottom: 1.2rem;
+}
+
+.card-figure {
+  margin: 0;
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(58, 34, 22, 0.18);
+  background: #fffaf3;
+}
+
+.card-actions {
+  margin-top: 1.4rem;
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.pill-btn.primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(184, 55, 36, 0.28);
+}
+
+.pill-btn.secondary {
+  background: #fff7f1;
+  color: var(--ink);
+  border: 1.5px solid rgba(90, 55, 40, 0.18);
+}
+
+/* ===== Round 2: 可愛首頁 ===== */
+@font-face {
+  font-family: 'Huninn';
+  src: url('../fonts/huninn.woff2') format('woff2');
+  font-display: swap;
+}
+.home-body { --font-cute: 'Huninn', 'WenKai', sans-serif; }
+.home-body .home-badge, .home-body .home-subtitle, .home-body .card-title,
+.home-body .card-play-pill, .home-body .card-arrow, .home-body .card-ref,
+.home-body .home-footer, .home-body .card-number { font-family: var(--font-cute); }
+.home-header { position: relative; margin-bottom: 2.2rem; }
+.home-title {
+  font-family: var(--font-cute);
+  font-weight: 400;
+  font-size: clamp(2rem, 8.4vw, 3.4rem);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  margin-bottom: 0.1rem;
+  text-shadow: none;
+  display: flex; flex-wrap: wrap; justify-content: center;
+}
+.home-title .tc {
+  display: inline-block;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.6);
+  text-shadow: 0 3px 0 #fff, 0 6px 14px rgba(190, 110, 90, 0.22);
+  animation: bob 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.16s);
+}
+.home-title .tc0 { color: #e8747c; }
+.home-title .tc1 { color: #f0a04b; }
+.home-title .tc2 { color: #6fb38a; }
+.home-title .tc3 { color: #6aa6d6; }
+.home-title .tc4 { color: #b58bd6; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-5px) rotate(2deg); } }
+.title-wave { display: block; width: min(300px, 70vw); height: 16px; margin: 0.15rem auto 0.7rem; }
+.home-badge { border-radius: 999px; background: #fff3ef; color: #c06a62; border: 2px dashed #f4b9b0; }
+.home-subtitle { color: #8a6253; }
+.hero-art {
+  margin: 1.4rem auto 0;
+  max-width: 760px;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 6px solid #fff;
+  box-shadow: 0 14px 34px rgba(200, 120, 100, 0.22);
+  transform: rotate(-1deg);
+}
+.hero-art img { display: block; width: 100%; height: auto; }
+.hero-deco { position: absolute; inset: -1rem 0 auto 0; height: 100%; pointer-events: none; }
+.hero-deco .fl { position: absolute; font-size: 1.5rem; opacity: 0.8; animation: floaty 4s ease-in-out infinite; }
+.hero-deco .f1 { left: 4%; top: 0.5rem; color: #f29a9f; }
+.hero-deco .f2 { right: 6%; top: 0; color: #f6c24f; animation-delay: .6s; }
+.hero-deco .f3 { right: 14%; top: 5.5rem; color: #f5b3c0; font-size: 1.1rem; animation-delay: 1.2s; }
+.hero-deco .f4 { left: 10%; top: 6.5rem; color: #8fc9a2; animation-delay: 1.8s; }
+.hero-deco .f5 { left: 1%; top: 13rem; color: #b9a2e0; font-size: 1.1rem; animation-delay: 2.4s; }
+.hero-deco .f6 { right: 2%; top: 12rem; color: #f29a9f; animation-delay: 3s; }
+@keyframes floaty { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.12); } }
+.home-body .tract-card { border-radius: 28px; border: 4px solid #fff; }
+.home-body .card-number { border-radius: 50%; }
+.home-body .card-title { font-weight: 400; }
+.foot-heart { color: #ef8f96; }
+@media (prefers-reduced-motion: reduce) { .home-title .tc, .hero-deco .fl { animation: none; } }
+.home-title { flex-direction: column; align-items: center; font-size: clamp(2rem, 9.6vw, 3.6rem); }
+.home-title .tl { display: flex; justify-content: center; }
+.home-title .tc { -webkit-text-stroke: 0; text-shadow: 0 3px 0 #fff, 0 5px 12px rgba(190,110,90,0.25); }

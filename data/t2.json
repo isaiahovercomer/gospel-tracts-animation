@@ -174,6 +174,20 @@
         726,
         1290
       ],
+      "r2_orig": {
+        "cam_from": [
+          240,
+          20,
+          963,
+          1712
+        ],
+        "cam_to": [
+          310,
+          68,
+          900,
+          1600
+        ]
+      },
       "start": 0.0,
       "duration": 3.0,
       "audio": null,
@@ -184,40 +198,81 @@
       "type": "text",
       "img": "front",
       "cam_from": [
-        371,
-        427,
-        544,
-        968
+        424,
+        590,
+        495,
+        620
       ],
       "cam_to": [
-        331,
-        371,
-        581,
-        1032
+        306,
+        540,
+        574,
+        719
       ],
       "text": "家庭裏的空氣該是愛。有的人心理反常、寡交，都是因為沒有愛。兒女們將來的情形如何，都是看家庭裏的空氣如何。",
       "text_pos": "bottom-right",
-      "sprites": [
-        {
-          "region": "foliage_decor_left_top",
-          "x": 0.86,
-          "y": 0.09,
-          "w": 0.15,
-          "motion": "sway"
-        },
-        {
-          "region": "house_illustration_right",
-          "x": 0.14,
-          "y": 0.61,
-          "w": 0.16,
-          "motion": "float"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          460,
+          530,
+          675,
+          1200
+        ],
+        "cam_to": [
+          410,
+          460,
+          720,
+          1280
+        ],
+        "text_pos": "bottom-right",
+        "sprites": [
+          {
+            "region": "foliage_decor_left_top",
+            "x": 0.86,
+            "y": 0.09,
+            "w": 0.15,
+            "motion": "sway"
+          },
+          {
+            "region": "house_illustration_right",
+            "x": 0.14,
+            "y": 0.61,
+            "w": 0.16,
+            "motion": "float"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
+      "view_to": [
+        56,
+        651,
+        968,
+        1213,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 120,
+        "w": 968,
+        "anchor": "top",
+        "maxh": 491
+      },
+      "layout": "split_bottom",
       "start": 3.0,
-      "duration": 15.588,
+      "duration": 15.036,
       "audio": "audio/t2/s01.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 14.088
+      "audio_dur": 13.536
     },
     {
       "type": "text",
@@ -235,68 +290,142 @@
         968
       ],
       "text": "如果兒女們在家庭裏，小的時候得不著愛的培養，你們就是把兒女們帶到剛硬的性情、孤獨的性情、反叛的性情裏去。許多的兒女，到年長的時候和人共處不來，乃是因為在家庭裏缺少愛的情形。",
-      "text_pos": "top-left",
-      "sprites": [
-        {
-          "region": "house_illustration_right",
-          "x": 0.86,
-          "y": 0.46,
-          "w": 0.16,
-          "motion": "drift"
-        }
+      "text_pos": "top",
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          380,
+          16,
+          720,
+          1280
+        ],
+        "cam_to": [
+          435,
+          20,
+          675,
+          1200
+        ],
+        "text_pos": "top-left",
+        "sprites": [
+          {
+            "region": "house_illustration_right",
+            "x": 0.86,
+            "y": 0.46,
+            "w": 0.16,
+            "motion": "drift"
+          }
+        ]
+      },
+      "layout": "full",
+      "view_from": [
+        56,
+        651,
+        968,
+        1213,
+        44,
+        0
       ],
-      "start": 18.588,
-      "duration": 22.284,
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 18.036,
+      "duration": 22.428,
       "audio": "audio/t2/s02.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 20.784
+      "audio_dur": 20.928
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        315,
-        411,
-        544,
-        968
+        340,
+        605,
+        494,
+        600
       ],
       "cam_to": [
-        395,
-        431,
-        544,
-        968
+        380,
+        557,
+        573,
+        696
       ],
       "text": "家庭裏都是吵，都是鬧，都是打的聲音，這些兒女到大的時候，就都是反常的。如果一個人小的時候，家庭是這種的情形，到大的時候，就自然而然落落寡交。",
       "text_pos": "bottom-left",
-      "sprites": [
-        {
-          "region": "house_illustration_right",
-          "x": 0.86,
-          "y": 0.08,
-          "w": 0.16,
-          "motion": "drift"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          390,
+          510,
+          675,
+          1200
+        ],
+        "cam_to": [
+          490,
+          535,
+          675,
+          1200
+        ],
+        "text_pos": "bottom-left",
+        "sprites": [
+          {
+            "region": "house_illustration_right",
+            "x": 0.86,
+            "y": 0.08,
+            "w": 0.16,
+            "motion": "drift"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 40.872,
-      "duration": 18.756,
+      "view_to": [
+        120,
+        814,
+        840,
+        1020,
+        10,
+        -1.8
+      ],
+      "frame": "polaroid",
+      "text_box": {
+        "x": 56,
+        "y": 120,
+        "w": 968,
+        "anchor": "top",
+        "maxh": 654
+      },
+      "layout": "inset_bottom",
+      "start": 40.464,
+      "duration": 18.612,
       "audio": "audio/t2/s03.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 17.256
+      "audio_dur": 17.112
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        347,
-        65,
-        544,
-        968
+        480,
+        105,
+        508,
+        903
       ],
       "cam_to": [
-        399,
-        145,
-        472,
-        839
+        266,
+        132,
+        488,
+        867
       ],
       "text": "他總看人不起。因為自己不如人，就反而要鼓吹自己，盼望比人更大。一切有自卑感的人，都是高抬自己，要在那裏平均自己。",
       "text_pos": "top-right",
@@ -309,43 +438,132 @@
           "motion": "sway"
         }
       ],
-      "start": 59.628,
-      "duration": 16.596,
+      "r2_orig": {
+        "cam_from": [
+          430,
+          80,
+          675,
+          1200
+        ],
+        "cam_to": [
+          495,
+          180,
+          585,
+          1040
+        ],
+        "text_pos": "top-right",
+        "sprites": [
+          {
+            "region": "foliage_decor_left_top",
+            "x": 0.84,
+            "y": 0.4,
+            "w": 0.14,
+            "motion": "sway"
+          }
+        ]
+      },
+      "text_box": {
+        "x": 264,
+        "y": 56,
+        "w": 760,
+        "anchor": "bottom",
+        "maxh": 980
+      },
+      "layout": "pan",
+      "view_from": [
+        120,
+        814,
+        840,
+        1020,
+        10,
+        -1.8
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 59.076,
+      "duration": 16.044,
       "audio": "audio/t2/s04.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 15.096
+      "audio_dur": 14.544
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        383,
-        431,
-        544,
-        968
+        421,
+        594,
+        535,
+        620
       ],
       "cam_to": [
-        347,
-        375,
-        581,
-        1032
+        293,
+        544,
+        622,
+        719
       ],
       "text": "所以，我們要看見，孩子們要好好的對待他們。在家裏要有喜樂、溫柔的空氣，要眞有愛。這樣，這個家庭裏的孩子出來時，就是一個正常的孩子。",
       "text_pos": "bottom",
-      "sprites": [
-        {
-          "region": "house_illustration_left",
-          "x": 0.88,
-          "y": 0.08,
-          "w": 0.14,
-          "motion": "float"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          475,
+          535,
+          675,
+          1200
+        ],
+        "cam_to": [
+          430,
+          465,
+          720,
+          1280
+        ],
+        "text_pos": "bottom",
+        "sprites": [
+          {
+            "region": "house_illustration_left",
+            "x": 0.88,
+            "y": 0.08,
+            "w": 0.14,
+            "motion": "float"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 76.224,
-      "duration": 18.66,
+      "view_to": [
+        56,
+        110,
+        968,
+        1120,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 594
+      },
+      "layout": "split_top",
+      "start": 75.12,
+      "duration": 17.844,
       "audio": "audio/t2/s05.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 17.16
+      "audio_dur": 16.344
     },
     {
       "type": "text",
@@ -380,65 +598,161 @@
           "motion": "drift"
         }
       ],
-      "start": 94.884,
-      "duration": 14.892,
+      "r2_orig": {
+        "cam_from": [
+          330,
+          40,
+          810,
+          1440
+        ],
+        "cam_to": [
+          400,
+          100,
+          720,
+          1280
+        ],
+        "text_pos": "top",
+        "sprites": [
+          {
+            "region": "house_illustration_left",
+            "x": 0.14,
+            "y": 0.89,
+            "w": 0.16,
+            "motion": "rise"
+          },
+          {
+            "region": "house_illustration_right",
+            "x": 0.86,
+            "y": 0.9,
+            "w": 0.18,
+            "motion": "drift"
+          }
+        ]
+      },
+      "text_box": {
+        "x": 76,
+        "y": 620,
+        "w": 760,
+        "anchor": "top",
+        "maxh": 980
+      },
+      "layout": "full",
+      "view_from": [
+        56,
+        110,
+        968,
+        1120,
+        44,
+        0
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 92.964,
+      "duration": 15.396,
       "audio": "audio/t2/s06.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 13.392
+      "audio_dur": 13.896
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        403,
-        403,
-        544,
-        968
+        418,
+        599,
+        519,
+        600
       ],
       "cam_to": [
-        323,
-        427,
-        544,
-        968
+        293,
+        551,
+        602,
+        696
       ],
       "text": "雖然我們對孩子的愛會用盡；但聖經告訴我們：『神就是愛，…愛裏沒有懼怕，完全的愛把懼怕驅除，…我們愛，因為神先愛我們。』",
       "text_pos": "bottom-right",
-      "sprites": [
-        {
-          "region": "foliage_decor_left_top",
-          "x": 0.86,
-          "y": 0.08,
-          "w": 0.13,
-          "motion": "float"
-        },
-        {
-          "region": "house_illustration_right",
-          "x": 0.14,
-          "y": 0.61,
-          "w": 0.16,
-          "motion": "sway"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          500,
+          500,
+          675,
+          1200
+        ],
+        "cam_to": [
+          400,
+          530,
+          675,
+          1200
+        ],
+        "text_pos": "bottom-right",
+        "sprites": [
+          {
+            "region": "foliage_decor_left_top",
+            "x": 0.86,
+            "y": 0.08,
+            "w": 0.13,
+            "motion": "float"
+          },
+          {
+            "region": "house_illustration_right",
+            "x": 0.14,
+            "y": 0.61,
+            "w": 0.16,
+            "motion": "sway"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 109.776,
-      "duration": 14.676,
+      "view_to": [
+        56,
+        110,
+        968,
+        1120,
+        44,
+        0
+      ],
+      "frame": "card",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 594
+      },
+      "layout": "split_top",
+      "start": 108.36,
+      "duration": 15.66,
       "audio": "audio/t2/s07.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 13.176
+      "audio_dur": 14.16
     },
     {
       "type": "text",
       "img": "front",
       "cam_from": [
-        375,
-        113,
-        508,
-        903
+        451,
+        77,
+        563,
+        1000
       ],
       "cam_to": [
-        290,
-        40,
-        617,
-        1097
+        215,
+        106,
+        540,
+        960
       ],
       "text": "我們若先享受神對我們的愛，就能用豐富、純潔的愛來愛孩子；自然而然地，在我們的家庭生活中，就會擁有美好的家庭時光！",
       "text_pos": "top-left",
@@ -451,11 +765,59 @@
           "motion": "zoom"
         }
       ],
-      "start": 124.452,
-      "duration": 14.676,
+      "r2_orig": {
+        "cam_from": [
+          465,
+          140,
+          630,
+          1120
+        ],
+        "cam_to": [
+          360,
+          50,
+          765,
+          1360
+        ],
+        "text_pos": "top-left",
+        "sprites": [
+          {
+            "region": "house_illustration_left",
+            "x": 0.86,
+            "y": 0.39,
+            "w": 0.15,
+            "motion": "zoom"
+          }
+        ]
+      },
+      "text_box": {
+        "x": 76,
+        "y": 620,
+        "w": 760,
+        "anchor": "top",
+        "maxh": 980
+      },
+      "layout": "pan",
+      "view_from": [
+        56,
+        110,
+        968,
+        1120,
+        44,
+        0
+      ],
+      "view_to": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
+      ],
+      "start": 124.02,
+      "duration": 15.084,
       "audio": "audio/t2/s08.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 13.176
+      "audio_dur": 13.584
     },
     {
       "type": "verse",
@@ -498,45 +860,103 @@
         }
       ],
       "orig_text_pos": "bottom-left",
-      "start": 139.128,
-      "duration": 18.66,
+      "r2_orig": {
+        "cam_from": [
+          1430,
+          0,
+          983,
+          1748
+        ],
+        "cam_to": [
+          1430,
+          0,
+          983,
+          1748
+        ],
+        "text_pos": "top",
+        "sprites": []
+      },
+      "layout": "full",
+      "start": 139.104,
+      "duration": 18.732,
       "audio": "audio/t2/s09.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 17.16
+      "audio_dur": 17.232
     },
     {
       "type": "prayer",
       "img": "front",
       "cam_from": [
-        359,
-        431,
-        544,
-        968
+        198,
+        545,
+        752,
+        719
       ],
       "cam_to": [
-        331,
-        377,
-        581,
-        1032
+        354,
+        594,
+        648,
+        620
       ],
       "text": "主耶穌，讚美你！你喜歡我們全家天天同心合意，存著歡躍單純的心一同用飯、一同讚美神。求你使我們的家庭時光充滿你的同在，也將得救的人天天加給我們。主耶穌，願我們的家成為你恩典的見證，感謝主！",
       "text_pos": "bottom-left",
-      "sprites": [
-        {
-          "region": "house_illustration_right",
-          "x": 0.86,
-          "y": 0.08,
-          "w": 0.16,
-          "motion": "sway"
-        }
+      "sprites": [],
+      "r2_orig": {
+        "cam_from": [
+          445,
+          535,
+          675,
+          1200
+        ],
+        "cam_to": [
+          410,
+          468,
+          720,
+          1280
+        ],
+        "text_pos": "bottom-left",
+        "sprites": [
+          {
+            "region": "house_illustration_right",
+            "x": 0.86,
+            "y": 0.08,
+            "w": 0.16,
+            "motion": "sway"
+          }
+        ]
+      },
+      "view_from": [
+        0,
+        0,
+        1080,
+        1920,
+        0,
+        0
       ],
-      "start": 157.788,
-      "duration": 26.1,
+      "view_to": [
+        120,
+        110,
+        840,
+        804,
+        10,
+        -1.4
+      ],
+      "frame": "polaroid",
+      "text_box": {
+        "x": 56,
+        "y": 56,
+        "w": 968,
+        "anchor": "bottom",
+        "maxh": 910
+      },
+      "layout": "prayer",
+      "start": 157.836,
+      "duration": 25.308,
       "audio": "audio/t2/s10.mp3",
       "audio_offset": 0.5,
-      "audio_dur": 24.6
+      "audio_dur": 23.808
     }
   ],
-  "total": 184.888,
+  "total": 184.144,
   "bgm": "audio/bgm.mp3"
 }
